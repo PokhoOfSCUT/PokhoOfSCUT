@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>Computer Graphics#1 - Rendering Pipeline</title>
+      <title>OpenGL Review#1 - Rendering Pipeline</title>
       <link href="/CG1-RenderingPipeline.html"/>
       <url>/CG1-RenderingPipeline.html</url>
       
@@ -15,12 +15,16 @@
           
           <category> Computer Graphics </category>
           
+          <category> OpenGL </category>
+          
       </categories>
       
       
         <tags>
             
             <tag> Computer Graphics </tag>
+            
+            <tag> OpenGL </tag>
             
         </tags>
       
