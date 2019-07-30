@@ -4,8 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="OpenGL Review#1 - Rendering Pipeline, Rhys&#39;s">
-    <meta name="description" content="OverviewRendering pipeline converts 3D scene into a 2D image phase by phase with given virtual camera, objects, light so">
+    <meta name="keywords" content="Unity Editor Scripting#1 - The Window Is Born, Rhys&#39;s">
+    <meta name="description" content="OverviewEditor extension allows you to custom your own editor window which is qualified with some specialized functional">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>OpenGL Review#1 - Rendering Pipeline | Rhys&#39;s</title>
+    <title>Unity Editor Scripting#1 - The Window Is Born | Rhys&#39;s</title>
     <link rel="icon" type="image/png" href="/logo1.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -225,13 +225,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://ww1.yunjiexi.club/2019/07/30/nRzLN.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        OpenGL Review#1 - Rendering Pipeline
+                        Unity Editor Scripting#1 - The Window Is Born
                     </div>
                 </div>
             </div>
@@ -342,12 +342,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Computer-Graphics/" target="_blank">
-                                <span class="chip bg-color">Computer Graphics</span>
+                            <a href="/tags/Unity/" target="_blank">
+                                <span class="chip bg-color">Unity</span>
                             </a>
                         
-                            <a href="/tags/OpenGL/" target="_blank">
-                                <span class="chip bg-color">OpenGL</span>
+                            <a href="/tags/Unity-Editor/" target="_blank">
+                                <span class="chip bg-color">Unity Editor</span>
                             </a>
                         
                     </div>
@@ -358,8 +358,12 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
-                                OpenGL
+                            <a href="/categories/Unity/" class="post-category" target="_blank">
+                                Unity
+                            </a>
+                        
+                            <a href="/categories/Unity/Unity-Editor/" class="post-category" target="_blank">
+                                Unity Editor
                             </a>
                         
                     </div>
@@ -370,21 +374,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2019-07-27
+                    2019-07-30
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        678
+                        514
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
-                        4 Min
+                        3 Min
                     </div>
                     
                 
@@ -395,65 +399,101 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Rendering pipeline converts 3D scene into a 2D image phase by phase with given virtual camera, objects, light sources, textures, etc. We can generally divide it into 3 parts by order:</p>
-<ul>
-<li>Application stage</li>
-<li>Geometry stage</li>
-<li>Rasterization stage</li>
-</ul>
-<p><img src="https://ww1.yunjiexi.club/2019/07/27/nr10M.png" alt></p>
-<hr>
-<h2 id="Application-Stage"><a href="#Application-Stage" class="headerlink" title="Application Stage"></a>Application Stage</h2><p>This stage is led by application and done by CPU. Tasks accomplished at this stage are below:</p>
-<ul>
-<li>Load the data from the hard drive into the CPU and do corresponding computations on the data, like collision detection.</li>
-<li>Culling: discard all the objects that aren’t within the frustum and don’t intersect with the frustum.</li>
-<li>Set up render states.</li>
-<li>Draw call.</li>
-</ul>
-<blockquote>
-<p>Notice:</p>
+                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Editor extension allows you to custom your own editor window which is qualified with some specialized functionalities for your project. It is very flexible since you can even make a common editor that can be widely used in many different projects.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/07/30/nRBNh.jpg" alt title="A custom window from unity3d.com"></p>
+<p>And usually, creating a custom editor window involves following steps:</p>
 <ol>
-<li>Render state defines that how a mesh should be rendered —— what shader to use, what material to apply, etc.</li>
-<li>CPU and GPU work independently. How can they communicate? There is something called <code>command buffer</code>. CPU can push some orders into the buffer and GPU retrieve orders from the buffer. Draw call is one of the orders which makes the GPU start rendering a particular frame.</li>
+<li>Create a script that derives from EditorWindow.</li>
+<li>Use code to trigger the window to display itself.</li>
+<li>Implement the GUI code for your tool.</li>
 </ol>
-</blockquote>
-<p>Finally, CPU assigns the primitive type and deliver the data of vertices to the GPU.</p>
-<hr>
-<h2 id="Geometry-Stage"><a href="#Geometry-Stage" class="headerlink" title="Geometry Stage"></a>Geometry Stage</h2><p>Geometry stage is a pipeline itself:</p>
-<ol>
-<li>Vertex shader.</li>
-<li>Tesselation shader.</li>
-<li>Geometry shader.</li>
-<li>Clipping.</li>
-<li>Viewport mapping.</li>
-</ol>
-<h3 id="Vertex-Shader"><a href="#Vertex-Shader" class="headerlink" title="Vertex Shader"></a>Vertex Shader</h3><p>Vertex shader is scriptable. It is used for transformations and vertex shading.</p>
-<p><img src="https://ww1.yunjiexi.club/2019/07/27/nrbwe.png" alt title="Coordinate System From LearnOpenGL"></p>
 <blockquote>
-<p>Vertex shading is also called <code>Gourand Shading</code>. Get more information about it <a href="https://learnopengl.com/Lighting/Basic-Lighting" target="_blank" rel="noopener">here</a>!</p>
+<p>Notice:<br>All your editor-related scripts should be put in a folder called <code>Editor</code> within your project.</p>
 </blockquote>
-<p>As you see, this process is actually a serie of matrix computations. Vertex shader sequentially carrys on these computatioins on the vertices one by one, converting them from <code>object space</code> into <code>clip space</code>. As to the following part, in fact, they are not parts of vertex shader, OpenGL will help you with that.</p>
-<h3 id="Clipping"><a href="#Clipping" class="headerlink" title="Clipping"></a>Clipping</h3><p>You may have noticed that the virtual camera can probably not cover a complete object through the whole transformation process. When this happens, the part outside the frustum will be discarded and then new vertices will be created. This takes place in the projection transformation process.</p>
-<p><img src="https://ww1.yunjiexi.club/2019/07/28/nrprp.png" alt title="Clipping"></p>
-<p>In more detail, when we convert the coordinates from view space into clip space, we have to define a <code>projection matrix</code>. This matrix determines a range of coordinates, for example, $(-1000, 1000)$. Then through the projection transfromation, the coordinates within the range will be mapped onto the <code>NDC (Normalized Device Coordinates)</code> in which the coodinates are within $(-1.0, 1.0)$. A vertex like $(1200, 400, 600)$ will not appear, because its $x$ component is out of range.</p>
+<hr>
+<h2 id="Construct-Your-First-Window"><a href="#Construct-Your-First-Window" class="headerlink" title="Construct Your First Window"></a>Construct Your First Window</h2><h3 id="Create-A-Script"><a href="#Create-A-Script" class="headerlink" title="Create A Script"></a>Create A Script</h3><p>Like what we’ve talked about, we should first create a scripte that derives from <code>EditorWindow</code>. You can name your script whatever you want, just make sure that the class holds the same name. Do not forget <code>using UnityEditor</code>.</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">using</span> System<span class="token punctuation">.</span>Collections<span class="token punctuation">;</span>
+<span class="token keyword">using</span> System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic<span class="token punctuation">;</span>
+<span class="token keyword">using</span> UnityEngine<span class="token punctuation">;</span>
+<span class="token keyword">using</span> UnityEditor<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Since it derives from <code>EditorWindow</code> and doesn’t has to be attached to an object as a component, we can simply remove <code>Start</code> and <code>Update</code>.</p>
+<h3 id="Trigger-the-Window"><a href="#Trigger-the-Window" class="headerlink" title="Trigger the Window"></a>Trigger the Window</h3><p>Now we’ve been prepared to build a window.</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Let’s go through the parameters one by one:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Intro</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Type</code> t</td>
+<td>The type of the window, must derive from <code>EditorWindow</code></td>
+</tr>
+<tr>
+<td><code>bool</code> utility</td>
+<td>True for utility window, false for normal window</td>
+</tr>
+<tr>
+<td><code>string</code> title</td>
+<td>The title of the window</td>
+</tr>
+<tr>
+<td><code>bool</code> focus</td>
+<td>Whether to give the window focus, if it already exists.</td>
+</tr>
+</tbody></table>
 <blockquote>
-<p>Notice:<br>Clipping is kind of different from the culling we’ve mentioned. Culling is like a preprocess, and it discards the objects that are completely outside the frustum, while clipping reconstruct the objects that intersect with the frustum.</p>
+<p>Notice:<br>This display function has to be static. And additionally, this function has a bunch of overloaded versions. If you want to know more about them, you can check it out <a href="https://docs.unity3d.com/ScriptReference/EditorWindow.GetWindow.html" target="_blank" rel="noopener">here</a>.</p>
 </blockquote>
-<h3 id="Viewport-Mapping"><a href="#Viewport-Mapping" class="headerlink" title="Viewport Mapping"></a>Viewport Mapping</h3><p>Once in the NDC, the <code>perspective division</code> is carried on. The $x$, $y$, $z$ components are divided by the homogeneous component $w$, and the 4D clip space coordinates are transform into 3D NDC coordinates. And then they are mapped onto screen space as fragments.</p>
+<p>Even though you create a window, you cannot show it off. The way you can trigger the window and show it is to use <code>attribute</code>. To do this, you just have to add a single line of code above the static display function:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>Window/Example Window</code> means that you can open this window by clicking the <code>Example Window</code> item which will appear on the popup list of <code>Window</code>.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/07/30/nRtS3.png" alt></p>
+<p><img src="https://ww1.yunjiexi.club/2019/07/30/nR9gS.png" alt></p>
+<p>Here we go!</p>
+<h3 id="Advanced-Setup"><a href="#Advanced-Setup" class="headerlink" title="Advanced Setup"></a>Advanced Setup</h3><p>You can get some advanced setup done to better fit your demands after making some changes on the codes above. The following are several simple common examples, <a href="https://docs.unity3d.com/ScriptReference/EditorWindow.GetWindow.html" target="_blank" rel="noopener">here</a> are more for you to find out!</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ExampleWindow window <span class="token operator">=</span> <span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span>EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// Set the minimum size of the window</span>
+        window<span class="token punctuation">.</span>minSize <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Vector2</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// Set the maximum size of the window</span>
+        window<span class="token punctuation">.</span>maxSize <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Vector2</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">1500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// Set the position</span>
+        window<span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Vector2</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
-<h2 id="Rasterization-Stage"><a href="#Rasterization-Stage" class="headerlink" title="Rasterization Stage"></a>Rasterization Stage</h2><p>This stage goes through 3 sub-stages:</p>
-<ul>
-<li>Triangle Setup</li>
-<li>Triangle Traversal</li>
-<li>Fragment Shader</li>
-</ul>
-<h3 id="Triangle-Setup"><a href="#Triangle-Setup" class="headerlink" title="Triangle Setup"></a>Triangle Setup</h3><p>The output from the preceding stage are daata of vertices, for a triangle, they are data of the 3 endpoints.</p>
-<h3 id="Triangle-Traversal"><a href="#Triangle-Traversal" class="headerlink" title="Triangle Traversal"></a>Triangle Traversal</h3><p>Triangle traversal is also called <code>scan conversion</code>. It checks if a pixel is covered by a triangle. If it is, then create a <code>fragment</code>. A fragment is something like a prototype of a pixel, which contains a bunch of data like depth and data from geometry stage. If a fragment is at an endpoint of the triangle, it contains the endpoint data, or its data come from interpolations.</p>
-<h3 id="Fragment-Shader"><a href="#Fragment-Shader" class="headerlink" title="Fragment Shader"></a>Fragment Shader</h3><p>Use interpolated data as input, carry on corresponding shading computations pixel by pixel, like lighting, texture mapping, etc.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>We have learned how to create a custom editor window in Unity, but it is not appliable now, since it contains nothing but a title and a whole gray panel. We will learn how to add some UI items on it and make use of them. See you guys next time.</p>
 <hr>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>This is just an overview of rendering pipeline which mainly goes through some fundamental concepts without any code. Rendering pipeline is a core of computer graphics. It is what you have to know, if you want to be engaged in related fields, and I highly recommend you to study on <a href="https://learnopengl.com" target="_blank" rel="noopener">LearnOpenGL</a> which is a really good online OpenGL tutorial with both concepts and program guide. See you guys next time!</p>
-<hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://learnopengl.com" target="_blank" rel="noopener">LearnOpenGL</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.unity3d.com/Manual/editor-EditorWindows.html" target="_blank" rel="noopener">Unity Documents</a></p>
 
             </div>
             <hr/>
@@ -491,9 +531,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/UnityEditorDev1.html">
                     <div class="card-image">
@@ -510,9 +551,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -529,6 +570,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -551,18 +593,18 @@
                 Next&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/DataStructureJourney2.html">
+                <a href="/CG1-RenderingPipeline.html">
                     <div class="card-image">
                         
-                        <img src="/medias/datastructure/data-structure.jpg" class="responsive-img" alt="Data Structure Review#2 - Stack">
+                        <img src="https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg" class="responsive-img" alt="OpenGL Review#1 - Rendering Pipeline">
                         
-                        <span class="card-title">Data Structure Review#2 - Stack</span>
+                        <span class="card-title">OpenGL Review#1 - Rendering Pipeline</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Once you try to program efficiently, you can't prevent data structure from being involved. To help myself review data structure, I started a whole new chapter to talk about it.
+                            Computer graphics is a sub-field of computer science which focuses on visual contents. Here we mainly refer to the 3D aspect, and discard 2D aspect like image processing, etc.
                         
                     </div>
                     <div class="publish-info">
@@ -573,8 +615,8 @@
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Data-Structure/" class="post-category" target="_blank">
-                                    Data Structure
+                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
+                                    OpenGL
                                 </a>
                             
                             
@@ -584,8 +626,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Data-Structure/" target="_blank">
-                        <span class="chip bg-color">Data Structure</span>
+                    <a href="/tags/Computer-Graphics/" target="_blank">
+                        <span class="chip bg-color">Computer Graphics</span>
+                    </a>
+                    
+                    <a href="/tags/OpenGL/" target="_blank">
+                        <span class="chip bg-color">OpenGL</span>
                     </a>
                     
                 </div>
@@ -696,13 +742,6 @@
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 <footer class="page-footer bg-color">
     <div class="container row center-align">
