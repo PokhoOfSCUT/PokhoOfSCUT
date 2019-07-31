@@ -381,14 +381,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        785
+                        910
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
-                        4 Min
+                        5 Min
                     </div>
                     
                 
@@ -522,6 +522,45 @@
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/07/31/f78dcce0e057985063e0f8074be53f8c.png" alt></p>
+<h3 id="Button-amp-Label"><a href="#Button-amp-Label" class="headerlink" title="Button &amp; Label"></a>Button &amp; Label</h3><p><code>Button</code> function is not in <code>EditorGUILayou</code> class, instead of <code>GUILayout</code> class. We’ve known that these two classes are similar in a lot of ways, and they even have some functions in common. However, we usually use EditorGUILayout for the editable UI elements, while for the static ones, we choose GUILayout. But this is not a rule, you can choose not to follow.</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">public</span> <span class="token keyword">enum</span> Selection
+<span class="token punctuation">{</span>
+    Right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    Left <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Selection selection<span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        selection <span class="token operator">=</span> <span class="token punctuation">(</span>Selection<span class="token punctuation">)</span>EditorGUILayout<span class="token punctuation">.</span><span class="token function">EnumPopup</span><span class="token punctuation">(</span><span class="token string">"Selection"</span><span class="token punctuation">,</span> selection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">Space</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        GUILayout<span class="token punctuation">.</span><span class="token function">Label</span><span class="token punctuation">(</span><span class="token string">"Switch the enum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>GUILayout<span class="token punctuation">.</span><span class="token function">Button</span><span class="token punctuation">(</span><span class="token string">"Button"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>selection <span class="token operator">==</span> Selection<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                selection <span class="token operator">=</span> Selection<span class="token punctuation">.</span>Right<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span>
+            <span class="token punctuation">{</span>
+                selection <span class="token operator">=</span> Selection<span class="token punctuation">.</span>Left<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Since there are too many controls, and most of them are so similar to use, so I cut off here. If you’ve coded like above and seen what happened in the Unity, you may noticed that we can interact with those UI controls, but they are not functional. This is because they are not connected with other stuff yet. Next time I will list some examples and continue to put up some advanced UI controls. If you want to learn more, you can check the references.</p>
 <hr>
@@ -786,7 +825,7 @@
 
            
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">3.9k</span>
+                <span class="white-color">4k</span>
             
 
             
