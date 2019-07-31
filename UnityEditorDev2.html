@@ -4,8 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Unity Editor Scripting#1 - The Window Is Born, Rhys&#39;s">
-    <meta name="description" content="OverviewEditor extension allows you to custom your own editor window which is qualified with some specialized functional">
+    <meta name="keywords" content="Unity Editor Scripting#2 - Editor UI Controls, Rhys&#39;s">
+    <meta name="description" content="OverviewLast time we learned how create a custom editor window, and in this chapter we are going to add some UI controls">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Unity Editor Scripting#1 - The Window Is Born | Rhys&#39;s</title>
+    <title>Unity Editor Scripting#2 - Editor UI Controls | Rhys&#39;s</title>
     <link rel="icon" type="image/png" href="/logo1.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -231,7 +231,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Unity Editor Scripting#1 - The Window Is Born
+                        Unity Editor Scripting#2 - Editor UI Controls
                     </div>
                 </div>
             </div>
@@ -381,14 +381,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        514
+                        785
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
-                        3 Min
+                        4 Min
                     </div>
                     
                 
@@ -399,101 +399,133 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Editor extension allows you to custom your own editor window which is qualified with some specialized functionalities for your project. It is very flexible since you can even make a common editor that can be widely used in many different projects.</p>
-<p><img src="https://ww1.yunjiexi.club/2019/07/30/nRBNh.jpg" alt title="A custom window from unity3d.com"></p>
-<p>And usually, creating a custom editor window involves following steps:</p>
-<ol>
-<li>Create a script that derives from EditorWindow.</li>
-<li>Use code to trigger the window to display itself.</li>
-<li>Implement the GUI code for your tool.</li>
-</ol>
-<blockquote>
-<p>Notice:<br>All your editor-related scripts should be put in a folder called <code>Editor</code> within your project.</p>
-</blockquote>
+                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Last time we learned how create a custom editor window, and in this chapter we are going to add some UI controls that we can interact with to make the window more like a tool.</p>
+<p>Before this, we have to shed light on some concepts first.</p>
 <hr>
-<h2 id="Construct-Your-First-Window"><a href="#Construct-Your-First-Window" class="headerlink" title="Construct Your First Window"></a>Construct Your First Window</h2><h3 id="Create-A-Script"><a href="#Create-A-Script" class="headerlink" title="Create A Script"></a>Create A Script</h3><p>Like what we’ve talked about, we should first create a scripte that derives from <code>EditorWindow</code>. You can name your script whatever you want, just make sure that the class holds the same name. Do not forget <code>using UnityEditor</code>.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">
-<span class="token keyword">using</span> System<span class="token punctuation">.</span>Collections<span class="token punctuation">;</span>
-<span class="token keyword">using</span> System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic<span class="token punctuation">;</span>
-<span class="token keyword">using</span> UnityEngine<span class="token punctuation">;</span>
-<span class="token keyword">using</span> UnityEditor<span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
-<span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Since it derives from <code>EditorWindow</code> and doesn’t has to be attached to an object as a component, we can simply remove <code>Start</code> and <code>Update</code>.</p>
-<h3 id="Trigger-the-Window"><a href="#Trigger-the-Window" class="headerlink" title="Trigger the Window"></a>Trigger the Window</h3><p>Now we’ve been prepared to build a window.</p>
+<h2 id="GUI-vs-EditorGUI"><a href="#GUI-vs-EditorGUI" class="headerlink" title="GUI vs EditorGUI"></a>GUI vs EditorGUI</h2><p>These are 2 important Unity UI API classes. The difference between them is mostly the use case. Simply saying, the <code>GUI</code> is used in the game scene to display UI items, while the <code>EditorGUI</code> is used in editor extension to display UI items in the custom window. When you use them, you have to manually adjust the layout of the UI.</p>
+<h2 id="GUILayout-vs-EditorGUILayout"><a href="#GUILayout-vs-EditorGUILayout" class="headerlink" title="GUILayout vs EditorGUILayout"></a>GUILayout vs EditorGUILayout</h2><p>We can regard these two as the wrappers of GUI and EditorGUI, the UI classes with automatic layout. It means you are able to create your UI more efficiently since you don’t have to adjust the layout manually. We will use <code>GUILayout</code> and <code>EditorGUILayout</code> in this chapter.</p>
+<hr>
+<h2 id="Intro-and-Usage"><a href="#Intro-and-Usage" class="headerlink" title="Intro and Usage"></a>Intro and Usage</h2><p>The functions to create specific UI items in GUILayout and EditorGUILayout are static, so you can apply them by doing <code>GUILayout.xxx</code> or <code>EditorGUILayout.xxx</code>. More importantly, you have to make sure that you put all these functions witin <code>OnGUI</code> function which is responsible for UI rendering.</p>
+<h3 id="CurveField"><a href="#CurveField" class="headerlink" title="CurveField"></a>CurveField</h3><p><code>CurveField</code> is what you use to make a curve field for editing an <a href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html" target="_blank" rel="noopener">AnimationCurve</a>.</p>
 <pre class="line-numbers language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
 <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Define an variable of AnimationCurve type</span>
+    AnimationCurve curve <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">AnimationCurve</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// Create a curve field</span>
+        curve <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">CurveField</span><span class="token punctuation">(</span><span class="token string">"Curve"</span><span class="token punctuation">,</span> curve<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Let’s go through the parameters one by one:</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Intro</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>Type</code> t</td>
-<td>The type of the window, must derive from <code>EditorWindow</code></td>
-</tr>
-<tr>
-<td><code>bool</code> utility</td>
-<td>True for utility window, false for normal window</td>
-</tr>
-<tr>
-<td><code>string</code> title</td>
-<td>The title of the window</td>
-</tr>
-<tr>
-<td><code>bool</code> focus</td>
-<td>Whether to give the window focus, if it already exists.</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>Notice:<br>This display function has to be static. And additionally, this function has a bunch of overloaded versions. If you want to know more about them, you can check it out <a href="https://docs.unity3d.com/ScriptReference/EditorWindow.GetWindow.html" target="_blank" rel="noopener">here</a>.</p>
-</blockquote>
-<p>Even though you create a window, you cannot show it off. The way you can trigger the window and show it is to use <code>attribute</code>. To do this, you just have to add a single line of code above the static display function:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">
-<span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-<span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>Window/Example Window</code> means that you can open this window by clicking the <code>Example Window</code> item which will appear on the popup list of <code>Window</code>.</p>
-<p><img src="https://ww1.yunjiexi.club/2019/07/30/nRtS3.png" alt></p>
-<p><img src="https://ww1.yunjiexi.club/2019/07/30/nR9gS.png" alt></p>
-<p>Here we go!</p>
-<h3 id="Advanced-Setup"><a href="#Advanced-Setup" class="headerlink" title="Advanced Setup"></a>Advanced Setup</h3><p>You can get some advanced setup done to better fit your demands after making some changes on the codes above. The following are several simple common examples, <a href="https://docs.unity3d.com/ScriptReference/EditorWindow.GetWindow.html" target="_blank" rel="noopener">here</a> are more for you to find out!</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://ww1.yunjiexi.club/2019/07/31/980329aff1cbf994ade225410338f284.png" alt></p>
+<h3 id="ColorField"><a href="#ColorField" class="headerlink" title="ColorField"></a>ColorField</h3><p><code>ColorFiled</code> is what you can use to make color field with color picker.</p>
 <pre class="line-numbers language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
 <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Define an variable of Color type</span>
+    Color color <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        ExampleWindow window <span class="token operator">=</span> <span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span>EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">// Set the minimum size of the window</span>
-        window<span class="token punctuation">.</span>minSize <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Vector2</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">// Set the maximum size of the window</span>
-        window<span class="token punctuation">.</span>maxSize <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Vector2</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">1500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">// Set the position</span>
-        window<span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Vector2</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        color <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">ColorField</span><span class="token punctuation">(</span><span class="token string">"Color"</span><span class="token punctuation">,</span> color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://ww1.yunjiexi.club/2019/07/31/a5b6f83c06e1653b19a163408f9b8b13.png" alt></p>
+<h3 id="DelayDoubleField"><a href="#DelayDoubleField" class="headerlink" title="DelayDoubleField"></a>DelayDoubleField</h3><p><code>DelayDoubleField</code> can make a input field for entering doubles. <code>DoubleField</code> holds the similar functionality, but the value is changed right away after the contents in the input field change. As to DelayDoubleField, the value is only changed if the enter is pressed or the focus is moved away.</p>
+<blockquote>
+<p>Notice:<br>Additionally, there are <code>DelayIntField</code>, <code>DelayFloatField</code>, and <code>DelayTextField</code>. They resemble the way of usage, here we only take <code>DelayDoubleField</code> as an example. Check <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">here</a> for more information.</p>
+</blockquote>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Define an variable of double type</span>
+    <span class="token keyword">double</span> speed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        speed <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">DelayDoubleField</span><span class="token punctuation">(</span><span class="token string">"Speed"</span><span class="token punctuation">,</span> speed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://ww1.yunjiexi.club/2019/07/31/29ad4137186aca6a93f46e2bf7ad9003.png" alt></p>
+<h3 id="EnumFlagsField"><a href="#EnumFlagsField" class="headerlink" title="EnumFlagsField"></a>EnumFlagsField</h3><p>Displays a menu with an option for every value of the enum type when clicked. An option for the value <code>0</code> with name <code>Nothing</code> and an option for the value <code>~0</code> (that is, all bits set) with the name <code>Everything</code> are always displayed at the top of the menu. The names for the values 0 and ~0 can be overriden by defining these values in the enum type.</p>
+<blockquote>
+<p>Notice:<br>This method only supports enums whose underlying types are supported by Unity’s serialization system (sbyte, short, int, byte, ushort, or uint). For enums backed by an unsigned type, the “Everything” option should have the value corresponding to all bits set (i.e. ~0 in an unchecked context or the MaxValue constant for the type).</p>
+</blockquote>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+    <span class="token keyword">enum</span> ExampleFlagsEnum
+    <span class="token punctuation">{</span>
+        None <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// Custom name for "Nothing" option</span>
+        A <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        B <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        AB <span class="token operator">=</span> A <span class="token operator">|</span> B<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// Combination of two flags</span>
+        C <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        All <span class="token operator">=</span> <span class="token operator">~</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// Custom name for "Everything" option</span>
+    <span class="token punctuation">}</span>
+
+    ExampleFlagsEnum flags<span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        flags <span class="token operator">=</span> <span class="token punctuation">(</span>ExampleFlagsEnum<span class="token punctuation">)</span>EditorGUILayout<span class="token punctuation">.</span><span class="token function">EnumFlagsField</span><span class="token punctuation">(</span><span class="token string">"Flags"</span><span class="token punctuation">,</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://ww1.yunjiexi.club/2019/07/31/cb313803dc8f7f2e4d31b1e6343ba27a.png" alt></p>
+<h3 id="EnumPopup"><a href="#EnumPopup" class="headerlink" title="EnumPopup"></a>EnumPopup</h3><p><code>EnumPopup</code> also display a menu with all values with enum type, but it is not like <code>EnumFlagsField</code>. Only one value can be selected at one time, and any type of combination is prohibited.</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">public</span> <span class="token keyword">enum</span> Selection
+<span class="token punctuation">{</span>
+    Right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    Left <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Selection selection<span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        selection <span class="token operator">=</span> <span class="token punctuation">(</span>Selection<span class="token punctuation">)</span>EditorGUILayout<span class="token punctuation">.</span><span class="token function">EnumPopup</span><span class="token punctuation">(</span><span class="token string">"Selection"</span><span class="token punctuation">,</span> selection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://ww1.yunjiexi.club/2019/07/31/f78dcce0e057985063e0f8074be53f8c.png" alt></p>
 <hr>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>We have learned how to create a custom editor window in Unity, but it is not appliable now, since it contains nothing but a title and a whole gray panel. We will learn how to add some UI items on it and make use of them. See you guys next time.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Since there are too many controls, and most of them are so similar to use, so I cut off here. If you’ve coded like above and seen what happened in the Unity, you may noticed that we can interact with those UI controls, but they are not functional. This is because they are not connected with other stuff yet. Next time I will list some examples and continue to put up some advanced UI controls. If you want to learn more, you can check the references.</p>
 <hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.unity3d.com/Manual/editor-EditorWindows.html" target="_blank" rel="noopener">Unity Documents</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">Unity Documents</a></p>
 
             </div>
             <hr/>
@@ -531,9 +563,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/UnityEditorDev2.html">
                     <div class="card-image">
@@ -550,9 +583,66 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-30
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Unity/" class="post-category" target="_blank">
+                                    Unity
+                                </a>
+                            
+                            <a href="/categories/Unity/Unity-Editor/" class="post-category" target="_blank">
+                                    Unity Editor
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Unity/" target="_blank">
+                        <span class="chip bg-color">Unity</span>
+                    </a>
+                    
+                    <a href="/tags/Unity-Editor/" target="_blank">
+                        <span class="chip bg-color">Unity Editor</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/UnityEditorDev1.html">
+                    <div class="card-image">
+                        
+                        <img src="https://ww1.yunjiexi.club/2019/07/30/nRzLN.png" class="responsive-img" alt="Unity Editor Scripting#1 - The Window Is Born">
+                        
+                        <span class="card-title">Unity Editor Scripting#1 - The Window Is Born</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Unity editor extension is a really amazing feature, which allows you to custom your own unity editor window to offer you specialized functionalities.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -578,58 +668,6 @@
                     
                     <a href="/tags/Unity-Editor/" target="_blank">
                         <span class="chip bg-color">Unity Editor</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/CG1-RenderingPipeline.html">
-                    <div class="card-image">
-                        
-                        <img src="https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg" class="responsive-img" alt="OpenGL Review#1 - Rendering Pipeline">
-                        
-                        <span class="card-title">OpenGL Review#1 - Rendering Pipeline</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Computer graphics is a sub-field of computer science which focuses on visual contents. Here we mainly refer to the 3D aspect, and discard 2D aspect like image processing, etc.
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-27
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
-                                    OpenGL
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Computer-Graphics/" target="_blank">
-                        <span class="chip bg-color">Computer Graphics</span>
-                    </a>
-                    
-                    <a href="/tags/OpenGL/" target="_blank">
-                        <span class="chip bg-color">OpenGL</span>
                     </a>
                     
                 </div>
