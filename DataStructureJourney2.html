@@ -28,8 +28,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -394,7 +393,7 @@
                 <h2 id="What-Is-A-Stack"><a href="#What-Is-A-Stack" class="headerlink" title="What Is A Stack"></a>What Is A Stack</h2><p>Stack is a list-like structure in which elements maybe inserted or removed from only one end. It seems that this makes it less practical and less flexible than the lists, but it also makes it easy to implement and more efficient. We call this feature “LIFO” which stands for “Last-In, First-Out”. Simply, the insertion order goes reverse to that of removal.</p>
 <hr>
 <h2 id="Stack-ADT"><a href="#Stack-ADT" class="headerlink" title="Stack ADT"></a>Stack ADT</h2><p>Before we define a stack ADT, we have to make something clear. There is only one element in the stack accessible, that is the one on the top of the stack, which we call the <code>top</code> element. The insertion operation on a stack is called <code>push</code>. The removal operation is called <code>pop</code>. And it is worth noticing that we can just pop out the top element.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">
+<pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span> <span class="token keyword">class</span> <span class="token class-name">Stack</span> <span class="token punctuation">{</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
     <span class="token comment" spellcheck="true">// Reinitialize the stack</span>
@@ -412,9 +411,9 @@
     <span class="token comment" spellcheck="true">// Return the stack size</span>
     <span class="token keyword">virtual</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <hr>
-<h2 id="Stack-Implementation"><a href="#Stack-Implementation" class="headerlink" title="Stack Implementation"></a>Stack Implementation</h2><h3 id="Array-based-Stack-Implementation"><a href="#Array-based-Stack-Implementation" class="headerlink" title="Array-based Stack Implementation"></a>Array-based Stack Implementation</h3><pre class="line-numbers language-cpp"><code class="language-cpp">
+<h2 id="Stack-Implementation"><a href="#Stack-Implementation" class="headerlink" title="Stack Implementation"></a>Stack Implementation</h2><h3 id="Array-based-Stack-Implementation"><a href="#Array-based-Stack-Implementation" class="headerlink" title="Array-based Stack Implementation"></a>Array-based Stack Implementation</h3><pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span>
 <span class="token keyword">class</span> <span class="token class-name">ArrayStack</span><span class="token operator">:</span> <span class="token keyword">public</span> Stack<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
 <span class="token keyword">private</span><span class="token operator">:</span>
@@ -457,8 +456,8 @@
         <span class="token keyword">return</span> top<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Linked-Stack-Implementation"><a href="#Linked-Stack-Implementation" class="headerlink" title="Linked Stack Implementation"></a>Linked Stack Implementation</h3><pre class="line-numbers language-cpp"><code class="language-cpp">
+</code></pre>
+<h3 id="Linked-Stack-Implementation"><a href="#Linked-Stack-Implementation" class="headerlink" title="Linked Stack Implementation"></a>Linked Stack Implementation</h3><pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span>
 <span class="token keyword">class</span> <span class="token class-name">LinkedStack</span><span class="token operator">:</span> <span class="token keyword">public</span> Stack<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
 <span class="token keyword">private</span><span class="token operator">:</span>
@@ -508,7 +507,7 @@
         <span class="token keyword">return</span> size<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <blockquote>
 <p>Notice:</p>
 <ol>
@@ -766,7 +765,7 @@
 
            
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">4k</span>
+                <span class="white-color">4.7k</span>
             
 
             

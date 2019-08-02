@@ -4,8 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Unity Editor Scripting#2 - Editor UI Controls, Rhys&#39;s">
-    <meta name="description" content="OverviewLast time we learned how create a custom editor window, and in this chapter we are going to add some UI controls">
+    <meta name="keywords" content="Unity Editor Scripting#3 - Editor UI Groups, Rhys&#39;s">
+    <meta name="description" content="OverviewLast time, we went through some UI controls that can be applied in our custom editor window for specialized func">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Unity Editor Scripting#2 - Editor UI Controls | Rhys&#39;s</title>
+    <title>Unity Editor Scripting#3 - Editor UI Groups | Rhys&#39;s</title>
     <link rel="icon" type="image/png" href="/logo1.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -230,7 +230,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Unity Editor Scripting#2 - Editor UI Controls
+                        Unity Editor Scripting#3 - Editor UI Groups
                     </div>
                 </div>
             </div>
@@ -373,21 +373,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2019-07-30
+                    2019-08-02
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        921
+                        749
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
-                        5 Min
+                        4 Min
                     </div>
                     
                 
@@ -398,19 +398,16 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Last time we learned how create a custom editor window, and in this chapter we are going to add some UI controls that we can interact with to make the window more like a tool.</p>
-<p>Before this, we have to shed light on some concepts first.</p>
+                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Last time, we went through some UI controls that can be applied in our custom editor window for specialized functionalities. And this time, we will go further to put up a more advanced technique: <code>Group</code>. This is a technique which allows us to organize a whole bunch of UI elements. For example, with automatic layout, Unity makes every button occupy a single line:</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/02/2d0bf4d9f87d71f654b9efa5d1ee263b.png" alt></p>
+<p>By using a horizontal group, we can make these buttons evenly stand in the same line:</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/02/5f5023713c657cc2ae545e9c303b4d0a.png" alt></p>
 <hr>
-<h2 id="GUI-vs-EditorGUI"><a href="#GUI-vs-EditorGUI" class="headerlink" title="GUI vs EditorGUI"></a>GUI vs EditorGUI</h2><p>These are 2 important Unity UI API classes. The difference between them is mostly the use case. Simply saying, the <code>GUI</code> is used in the game scene to display UI items, while the <code>EditorGUI</code> is used in editor extension to display UI items in the custom window. When you use them, you have to manually adjust the layout of the UI.</p>
-<h2 id="GUILayout-vs-EditorGUILayout"><a href="#GUILayout-vs-EditorGUILayout" class="headerlink" title="GUILayout vs EditorGUILayout"></a>GUILayout vs EditorGUILayout</h2><p>We can regard these two as the wrappers of GUI and EditorGUI, the UI classes with automatic layout. It means you are able to create your UI more efficiently since you don’t have to adjust the layout manually. We will use <code>GUILayout</code> and <code>EditorGUILayout</code> in this chapter.</p>
-<hr>
-<h2 id="Intro-and-Usage"><a href="#Intro-and-Usage" class="headerlink" title="Intro and Usage"></a>Intro and Usage</h2><p>The functions to create specific UI items in GUILayout and EditorGUILayout are static, so you can apply them by doing <code>GUILayout.xxx</code> or <code>EditorGUILayout.xxx</code>. More importantly, you have to make sure that you put all these functions witin <code>OnGUI</code> function which is responsible for UI rendering.</p>
-<h3 id="CurveField"><a href="#CurveField" class="headerlink" title="CurveField"></a>CurveField</h3><p><code>CurveField</code> is what you use to make a curve field for editing an <a href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html" target="_blank" rel="noopener">AnimationCurve</a>.</p>
+<h2 id="Intro-and-Usage"><a href="#Intro-and-Usage" class="headerlink" title="Intro and Usage"></a>Intro and Usage</h2><p>Typically, the <code>Group</code> function consists of a beginning part, a ending part, and all the UI controls between them. The beginning part is mostly named <code>Beginxxx</code>, while the ending part is mostly named <code>Endxxx</code>. Same with UI controls, they are also static in the <code>EditorGUILayout</code> class.</p>
+<h3 id="BeginHorizontal"><a href="#BeginHorizontal" class="headerlink" title="BeginHorizontal"></a>BeginHorizontal</h3><p><code>BeginHorizontal</code> is what used just now to make two buttons in the same line evenly. You can make anything in the same line, for instance, a button along with a text field, a text field along with a color picker, etc. You can even put 3 or more items together, but always pay attention to the window size. If you organize too many items in the same line and your window width is not enough, it will make it diffcult to identify them clearly.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
 <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// Define an variable of AnimationCurve type</span>
-    AnimationCurve curve <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">AnimationCurve</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -418,19 +415,18 @@
     <span class="token punctuation">}</span>
 
     <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// Create a curve field</span>
-        curve <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">CurveField</span><span class="token punctuation">(</span><span class="token string">"Curve"</span><span class="token punctuation">,</span> curve<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">BeginHorizontal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        GUILayout<span class="token punctuation">.</span><span class="token function">Button</span><span class="token punctuation">(</span><span class="token string">"Back"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        GUILayout<span class="token punctuation">.</span><span class="token function">Button</span><span class="token punctuation">(</span><span class="token string">"Next"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">EndHorizontal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
 <span class="token punctuation">}</span>
 </code></pre>
-<p><img src="https://ww1.yunjiexi.club/2019/07/31/980329aff1cbf994ade225410338f284.png" alt></p>
-<h3 id="ColorField"><a href="#ColorField" class="headerlink" title="ColorField"></a>ColorField</h3><p><code>ColorFiled</code> is what you can use to make color field with color picker.</p>
+<h3 id="BeginFadeGroup"><a href="#BeginFadeGroup" class="headerlink" title="BeginFadeGroup"></a>BeginFadeGroup</h3><p><code>BeginFadeGroup</code> can make the area that contains a collection of UI items partially or completely faded. It depends on the value of the parameter it takes. It takes a float within the range from $0$ to $1$, and $0$ means that nothing is faded while $1$ for everything faded.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
 <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// Define an variable of Color type</span>
-    Color color <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -438,21 +434,23 @@
     <span class="token punctuation">}</span>
 
     <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        color <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">ColorField</span><span class="token punctuation">(</span><span class="token string">"Color"</span><span class="token punctuation">,</span> color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">BeginFadeGroup</span><span class="token punctuation">(</span><span class="token number">0.8f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">PrefixLabel</span><span class="token punctuation">(</span><span class="token string">"Color"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_Color <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">ColorField</span><span class="token punctuation">(</span>m_Color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">PrefixLabel</span><span class="token punctuation">(</span><span class="token string">"Text"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m_String <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">TextField</span><span class="token punctuation">(</span>m_String<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">EndFadeGroup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
 <span class="token punctuation">}</span>
 </code></pre>
-<p><img src="https://ww1.yunjiexi.club/2019/07/31/a5b6f83c06e1653b19a163408f9b8b13.png" alt></p>
-<h3 id="DelayDoubleField"><a href="#DelayDoubleField" class="headerlink" title="DelayDoubleField"></a>DelayDoubleField</h3><p><code>DelayDoubleField</code> can make a input field for entering doubles. <code>DoubleField</code> holds the similar functionality, but the value is changed right away after the contents in the input field change. As to DelayDoubleField, the value is only changed if the enter is pressed or the focus is moved away.</p>
-<blockquote>
-<p>Notice:<br>Additionally, there are <code>DelayIntField</code>, <code>DelayFloatField</code>, and <code>DelayTextField</code>. They resemble the way of usage, here we only take <code>DelayDoubleField</code> as an example. Check <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">here</a> for more information.</p>
-</blockquote>
+<p><img src="https://ww1.yunjiexi.club/2019/08/02/bb223a09ab4812a0f8454c5781502755.png" alt></p>
+<h3 id="BeginFoldoutHeaderGroup"><a href="#BeginFoldoutHeaderGroup" class="headerlink" title="BeginFoldoutHeaderGroup"></a>BeginFoldoutHeaderGroup</h3><p><code>BeginFoldoutHeaderGroup</code> is useful when your custom editor has a very huge section that force you scroll down a lot to skip it. With BeginFoldoutHeaderGroup, you can just fold the whole section if it it not being used. Just like the header of a component you can easily see in a inspector.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
 <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// Define an variable of double type</span>
-    <span class="token keyword">double</span> speed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    string m_String<span class="token punctuation">;</span>
+    Color m_Color <span class="token operator">=</span> Color<span class="token punctuation">.</span>white<span class="token punctuation">;</span>
 
     <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
     <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -460,110 +458,84 @@
     <span class="token punctuation">}</span>
 
     <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        speed <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">DelayDoubleField</span><span class="token punctuation">(</span><span class="token string">"Speed"</span><span class="token punctuation">,</span> speed<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-</code></pre>
-<p><img src="https://ww1.yunjiexi.club/2019/07/31/29ad4137186aca6a93f46e2bf7ad9003.png" alt></p>
-<h3 id="EnumFlagsField"><a href="#EnumFlagsField" class="headerlink" title="EnumFlagsField"></a>EnumFlagsField</h3><p>Displays a menu with an option for every value of the enum type when clicked. An option for the value <code>0</code> with name <code>Nothing</code> and an option for the value <code>~0</code> (that is, all bits set) with the name <code>Everything</code> are always displayed at the top of the menu. The names for the values 0 and ~0 can be overriden by defining these values in the enum type.</p>
-<blockquote>
-<p>Notice:<br>This method only supports enums whose underlying types are supported by Unity’s serialization system (sbyte, short, int, byte, ushort, or uint). For enums backed by an unsigned type, the “Everything” option should have the value corresponding to all bits set (i.e. ~0 in an unchecked context or the MaxValue constant for the type).</p>
-</blockquote>
-<pre class=" language-cpp"><code class="language-cpp">
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
-<span class="token punctuation">{</span>
-    <span class="token keyword">enum</span> ExampleFlagsEnum
-    <span class="token punctuation">{</span>
-        None <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// Custom name for "Nothing" option</span>
-        A <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">0</span><span class="token punctuation">,</span>
-        B <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span>
-        AB <span class="token operator">=</span> A <span class="token operator">|</span> B<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// Combination of two flags</span>
-        C <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">2</span><span class="token punctuation">,</span>
-        All <span class="token operator">=</span> <span class="token operator">~</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// Custom name for "Everything" option</span>
-    <span class="token punctuation">}</span>
-
-    ExampleFlagsEnum flags<span class="token punctuation">;</span>
-
-    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        flags <span class="token operator">=</span> <span class="token punctuation">(</span>ExampleFlagsEnum<span class="token punctuation">)</span>EditorGUILayout<span class="token punctuation">.</span><span class="token function">EnumFlagsField</span><span class="token punctuation">(</span><span class="token string">"Flags"</span><span class="token punctuation">,</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-</code></pre>
-<p><img src="https://ww1.yunjiexi.club/2019/07/31/cb313803dc8f7f2e4d31b1e6343ba27a.png" alt></p>
-<h3 id="EnumPopup"><a href="#EnumPopup" class="headerlink" title="EnumPopup"></a>EnumPopup</h3><p><code>EnumPopup</code> also display a menu with all values with enum type, but it is not like <code>EnumFlagsField</code>. Only one value can be selected at one time, and any type of combination is prohibited.</p>
-<pre class=" language-cpp"><code class="language-cpp">
-<span class="token keyword">public</span> <span class="token keyword">enum</span> Selection
-<span class="token punctuation">{</span>
-    Right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
-    Left <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> Selection selection<span class="token punctuation">;</span>
-
-    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        selection <span class="token operator">=</span> <span class="token punctuation">(</span>Selection<span class="token punctuation">)</span>EditorGUILayout<span class="token punctuation">.</span><span class="token function">EnumPopup</span><span class="token punctuation">(</span><span class="token string">"Selection"</span><span class="token punctuation">,</span> selection<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span>
-</code></pre>
-<p><img src="https://ww1.yunjiexi.club/2019/07/31/f78dcce0e057985063e0f8074be53f8c.png" alt></p>
-<h3 id="Button-amp-Label"><a href="#Button-amp-Label" class="headerlink" title="Button &amp; Label"></a>Button &amp; Label</h3><p><code>Button</code> function is not in <code>EditorGUILayou</code> class, instead of <code>GUILayout</code> class. We’ve known that these two classes are similar in a lot of ways, and they even have some functions in common. However, we usually use EditorGUILayout for the editable UI elements, while for the static ones, we choose GUILayout. But this is not a rule, you can choose not to follow.</p>
-<pre class=" language-cpp"><code class="language-cpp">
-<span class="token keyword">public</span> <span class="token keyword">enum</span> Selection
-<span class="token punctuation">{</span>
-    Right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
-    Left <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> Selection selection<span class="token punctuation">;</span>
-
-    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        selection <span class="token operator">=</span> <span class="token punctuation">(</span>Selection<span class="token punctuation">)</span>EditorGUILayout<span class="token punctuation">.</span><span class="token function">EnumPopup</span><span class="token punctuation">(</span><span class="token string">"Selection"</span><span class="token punctuation">,</span> selection<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        EditorGUILayout<span class="token punctuation">.</span><span class="token function">Space</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        GUILayout<span class="token punctuation">.</span><span class="token function">Label</span><span class="token punctuation">(</span><span class="token string">"Switch the enum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>GUILayout<span class="token punctuation">.</span><span class="token function">Button</span><span class="token punctuation">(</span><span class="token string">"Button"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        fold <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">BeginFoldoutHeaderGroup</span><span class="token punctuation">(</span>fold<span class="token punctuation">,</span> <span class="token string">"Panel"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>fold<span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>selection <span class="token operator">==</span> Selection<span class="token punctuation">.</span>Left<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                selection <span class="token operator">=</span> Selection<span class="token punctuation">.</span>Right<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token punctuation">{</span>
-                selection <span class="token operator">=</span> Selection<span class="token punctuation">.</span>Left<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            EditorGUI<span class="token punctuation">.</span>indentLevel<span class="token operator">++</span><span class="token punctuation">;</span>
+            EditorGUILayout<span class="token punctuation">.</span><span class="token function">PrefixLabel</span><span class="token punctuation">(</span><span class="token string">"Color"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            m_Color <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">ColorField</span><span class="token punctuation">(</span>m_Color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            EditorGUILayout<span class="token punctuation">.</span><span class="token function">PrefixLabel</span><span class="token punctuation">(</span><span class="token string">"Text"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            m_String <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">TextField</span><span class="token punctuation">(</span>m_String<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            EditorGUI<span class="token punctuation">.</span>indentLevel<span class="token operator">--</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">EndFoldoutHeaderGroup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Now, you can click the button to switch the selection value.</p>
-<p><img src="https://ww1.yunjiexi.club/2019/07/31/58b42c4b08c706fbc7300879956c5206.png" alt></p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/02/5caa72dd449332dddce343b5d124d1eb.png" alt></p>
+<h3 id="BeginScrollView"><a href="#BeginScrollView" class="headerlink" title="BeginScrollView"></a>BeginScrollView</h3><p>I believe that you all have used <code>ScrollView</code> control in UGUI system, <code>BeginScrollView</code> is pretty much the same, offering a display area with bar to scroll to view excess contents.</p>
+<pre class=" language-cpp"><code class="language-cpp">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+    Vector2 scrollPos<span class="token punctuation">;</span>
+    string t <span class="token operator">=</span> <span class="token string">"This is a string inside a Scroll view!"</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">BeginHorizontal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        scrollPos <span class="token operator">=</span>
+            EditorGUILayout<span class="token punctuation">.</span><span class="token function">BeginScrollView</span><span class="token punctuation">(</span>scrollPos<span class="token punctuation">,</span> GUILayout<span class="token punctuation">.</span><span class="token function">Width</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> GUILayout<span class="token punctuation">.</span><span class="token function">Height</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        GUILayout<span class="token punctuation">.</span><span class="token function">Label</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">EndScrollView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>GUILayout<span class="token punctuation">.</span><span class="token function">Button</span><span class="token punctuation">(</span><span class="token string">"Add More Text"</span><span class="token punctuation">,</span> GUILayout<span class="token punctuation">.</span><span class="token function">Width</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> GUILayout<span class="token punctuation">.</span><span class="token function">Height</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            t <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">" \nAnd this is more text!"</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">EndHorizontal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>GUILayout<span class="token punctuation">.</span><span class="token function">Button</span><span class="token punctuation">(</span><span class="token string">"Clear"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            t <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="https://ww1.yunjiexi.club/2019/08/02/838afeedefef690522dbd100367da90d.png" alt></p>
+<h3 id="BeginToggleGroup"><a href="#BeginToggleGroup" class="headerlink" title="BeginToggleGroup"></a>BeginToggleGroup</h3><p><code>BeginToggleGroup</code> gives a toggle control above the collection of items, and you can determine the availability of the collection with it. If you checke the toggle, the items are available. If not, they are not available.</p>
+<pre class=" language-cpp"><code class="language-cpp">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
+<span class="token punctuation">{</span>
+    <span class="token keyword">bool</span><span class="token punctuation">[</span><span class="token punctuation">]</span> pos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">bool</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token punctuation">{</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span><span class="token punctuation">[</span><span class="token punctuation">]</span> rot <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">bool</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token punctuation">{</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">bool</span> posGroupEnabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> rotGroupEnabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        posGroupEnabled <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">BeginToggleGroup</span><span class="token punctuation">(</span><span class="token string">"Align position"</span><span class="token punctuation">,</span> posGroupEnabled<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">Toggle</span><span class="token punctuation">(</span><span class="token string">"x"</span><span class="token punctuation">,</span> pos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pos<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">Toggle</span><span class="token punctuation">(</span><span class="token string">"y"</span><span class="token punctuation">,</span> pos<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pos<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">Toggle</span><span class="token punctuation">(</span><span class="token string">"z"</span><span class="token punctuation">,</span> pos<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">EndToggleGroup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        rotGroupEnabled <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">BeginToggleGroup</span><span class="token punctuation">(</span><span class="token string">"Align rotation"</span><span class="token punctuation">,</span> rotGroupEnabled<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        rot<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">Toggle</span><span class="token punctuation">(</span><span class="token string">"x"</span><span class="token punctuation">,</span> rot<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        rot<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">Toggle</span><span class="token punctuation">(</span><span class="token string">"y"</span><span class="token punctuation">,</span> rot<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        rot<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> EditorGUILayout<span class="token punctuation">.</span><span class="token function">Toggle</span><span class="token punctuation">(</span><span class="token string">"z"</span><span class="token punctuation">,</span> rot<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EditorGUILayout<span class="token punctuation">.</span><span class="token function">EndToggleGroup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="https://ww1.yunjiexi.club/2019/08/02/97e03b91917d05299e8aa157d95aff42.png" alt></p>
 <hr>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Since there are too many controls, and most of them are so similar to use, so I cut off here. If you’ve coded like above and seen what happened in the Unity, you may noticed that we can interact with those UI controls, but they are not functional. This is because they are not connected with other stuff yet. Next time I will list some examples and continue to put up some advanced UI controls. If you want to learn more, you can check the references.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Even though we only code couple of lines, but the result is pretty good, we’ve got a very good start. This is just an iceberg of Unity editor, and if you want to create much better one, you can find some open source projects to study their source codes or get on the <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">Unity.com</a> to look through the documentation.</p>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">Unity Documents</a></p>
 
@@ -603,9 +575,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/UnityEditorDev3.html">
                     <div class="card-image">
@@ -622,9 +595,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -641,6 +614,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -663,12 +637,12 @@
                 Next&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/UnityEditorDev1.html">
+                <a href="/UnityEditorDev2.html">
                     <div class="card-image">
                         
-                        <img src="https://ww1.yunjiexi.club/2019/07/30/nRzLN.png" class="responsive-img" alt="Unity Editor Scripting#1 - The Window Is Born">
+                        <img src="https://ww1.yunjiexi.club/2019/07/30/nRzLN.png" class="responsive-img" alt="Unity Editor Scripting#2 - Editor UI Controls">
                         
-                        <span class="card-title">Unity Editor Scripting#1 - The Window Is Born</span>
+                        <span class="card-title">Unity Editor Scripting#2 - Editor UI Controls</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -816,6 +790,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 <footer class="page-footer bg-color">
     <div class="container row center-align">

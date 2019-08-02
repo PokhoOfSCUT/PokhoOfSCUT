@@ -28,8 +28,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -412,7 +411,7 @@
 </blockquote>
 <hr>
 <h2 id="Construct-Your-First-Window"><a href="#Construct-Your-First-Window" class="headerlink" title="Construct Your First Window"></a>Construct Your First Window</h2><h3 id="Create-A-Script"><a href="#Create-A-Script" class="headerlink" title="Create A Script"></a>Create A Script</h3><p>Like what we’ve talked about, we should first create a scripte that derives from <code>EditorWindow</code>. You can name your script whatever you want, just make sure that the class holds the same name. Do not forget <code>using UnityEditor</code>.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">
+<pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">using</span> System<span class="token punctuation">.</span>Collections<span class="token punctuation">;</span>
 <span class="token keyword">using</span> System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic<span class="token punctuation">;</span>
 <span class="token keyword">using</span> UnityEngine<span class="token punctuation">;</span>
@@ -422,17 +421,17 @@
 <span class="token punctuation">{</span>
 
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>Since it derives from <code>EditorWindow</code> and doesn’t has to be attached to an object as a component, we can simply remove <code>Start</code> and <code>Update</code>.</p>
 <h3 id="Trigger-the-Window"><a href="#Trigger-the-Window" class="headerlink" title="Trigger the Window"></a>Trigger the Window</h3><p>Now we’ve been prepared to build a window.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">
+<pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
 <span class="token punctuation">{</span>
     <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>Let’s go through the parameters one by one:</p>
 <table>
 <thead>
@@ -462,18 +461,18 @@
 <p>Notice:<br>This display function has to be static. And additionally, this function has a bunch of overloaded versions. If you want to know more about them, you can check it out <a href="https://docs.unity3d.com/ScriptReference/EditorWindow.GetWindow.html" target="_blank" rel="noopener">here</a>.</p>
 </blockquote>
 <p>Even though you create a window, you cannot show it off. The way you can trigger the window and show it is to use <code>attribute</code>. To do this, you just have to add a single line of code above the static display function:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">
+<pre class=" language-cpp"><code class="language-cpp">
 <span class="token punctuation">[</span><span class="token function">MenuItem</span><span class="token punctuation">(</span><span class="token string">"Window/Example Window"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
 <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     EditorWindow<span class="token punctuation">.</span><span class="token function">GetWindow</span><span class="token punctuation">(</span><span class="token function">typeof</span><span class="token punctuation">(</span>ExampleWindow<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"Example"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p><code>Window/Example Window</code> means that you can open this window by clicking the <code>Example Window</code> item which will appear on the popup list of <code>Window</code>.</p>
 <p><img src="https://ww1.yunjiexi.club/2019/07/30/nRtS3.png" alt></p>
 <p><img src="https://ww1.yunjiexi.club/2019/07/30/nR9gS.png" alt></p>
 <p>Here we go!</p>
 <h3 id="Advanced-Setup"><a href="#Advanced-Setup" class="headerlink" title="Advanced Setup"></a>Advanced Setup</h3><p>You can get some advanced setup done to better fit your demands after making some changes on the codes above. The following are several simple common examples, <a href="https://docs.unity3d.com/ScriptReference/EditorWindow.GetWindow.html" target="_blank" rel="noopener">here</a> are more for you to find out!</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">
+<pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
 <span class="token punctuation">{</span>
     <span class="token keyword">static</span> <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">ShowWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -489,7 +488,7 @@
         window<span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Vector2</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <hr>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>We have learned how to create a custom editor window in Unity, but it is not appliable now, since it contains nothing but a title and a whole gray panel. We will learn how to add some UI items on it and make use of them. See you guys next time.</p>
 <hr>
@@ -748,7 +747,7 @@
 
            
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">4k</span>
+                <span class="white-color">4.7k</span>
             
 
             
