@@ -376,7 +376,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        678
+                        688
                     </div>
                     
 
@@ -402,6 +402,7 @@
 </ul>
 <p><img src="https://ww1.yunjiexi.club/2019/07/27/nr10M.png" alt></p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Application-Stage"><a href="#Application-Stage" class="headerlink" title="Application Stage"></a>Application Stage</h2><p>This stage is led by application and done by CPU. Tasks accomplished at this stage are below:</p>
 <ul>
 <li>Load the data from the hard drive into the CPU and do corresponding computations on the data, like collision detection.</li>
@@ -418,6 +419,7 @@
 </blockquote>
 <p>Finally, CPU assigns the primitive type and deliver the data of vertices to the GPU.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Geometry-Stage"><a href="#Geometry-Stage" class="headerlink" title="Geometry Stage"></a>Geometry Stage</h2><p>Geometry stage is a pipeline itself:</p>
 <ol>
 <li>Vertex shader.</li>
@@ -432,26 +434,34 @@
 <p>Vertex shading is also called <code>Gourand Shading</code>. Get more information about it <a href="https://learnopengl.com/Lighting/Basic-Lighting" target="_blank" rel="noopener">here</a>!</p>
 </blockquote>
 <p>As you see, this process is actually a serie of matrix computations. Vertex shader sequentially carrys on these computatioins on the vertices one by one, converting them from <code>object space</code> into <code>clip space</code>. As to the following part, in fact, they are not parts of vertex shader, OpenGL will help you with that.</p>
+<p>&nbsp;</p>
 <h3 id="Clipping"><a href="#Clipping" class="headerlink" title="Clipping"></a>Clipping</h3><p>You may have noticed that the virtual camera can probably not cover a complete object through the whole transformation process. When this happens, the part outside the frustum will be discarded and then new vertices will be created. This takes place in the projection transformation process.</p>
 <p><img src="https://ww1.yunjiexi.club/2019/07/28/nrprp.png" alt title="Clipping"></p>
 <p>In more detail, when we convert the coordinates from view space into clip space, we have to define a <code>projection matrix</code>. This matrix determines a range of coordinates, for example, $(-1000, 1000)$. Then through the projection transfromation, the coordinates within the range will be mapped onto the <code>NDC (Normalized Device Coordinates)</code> in which the coodinates are within $(-1.0, 1.0)$. A vertex like $(1200, 400, 600)$ will not appear, because its $x$ component is out of range.</p>
 <blockquote>
 <p>Notice:<br>Clipping is kind of different from the culling we’ve mentioned. Culling is like a preprocess, and it discards the objects that are completely outside the frustum, while clipping reconstruct the objects that intersect with the frustum.</p>
 </blockquote>
+<p>&nbsp;</p>
 <h3 id="Viewport-Mapping"><a href="#Viewport-Mapping" class="headerlink" title="Viewport Mapping"></a>Viewport Mapping</h3><p>Once in the NDC, the <code>perspective division</code> is carried on. The $x$, $y$, $z$ components are divided by the homogeneous component $w$, and the 4D clip space coordinates are transform into 3D NDC coordinates. And then they are mapped onto screen space as fragments.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Rasterization-Stage"><a href="#Rasterization-Stage" class="headerlink" title="Rasterization Stage"></a>Rasterization Stage</h2><p>This stage goes through 3 sub-stages:</p>
 <ul>
 <li>Triangle Setup</li>
 <li>Triangle Traversal</li>
 <li>Fragment Shader</li>
 </ul>
+<p>&nbsp;</p>
 <h3 id="Triangle-Setup"><a href="#Triangle-Setup" class="headerlink" title="Triangle Setup"></a>Triangle Setup</h3><p>The output from the preceding stage are daata of vertices, for a triangle, they are data of the 3 endpoints.</p>
+<p>&nbsp;</p>
 <h3 id="Triangle-Traversal"><a href="#Triangle-Traversal" class="headerlink" title="Triangle Traversal"></a>Triangle Traversal</h3><p>Triangle traversal is also called <code>scan conversion</code>. It checks if a pixel is covered by a triangle. If it is, then create a <code>fragment</code>. A fragment is something like a prototype of a pixel, which contains a bunch of data like depth and data from geometry stage. If a fragment is at an endpoint of the triangle, it contains the endpoint data, or its data come from interpolations.</p>
+<p>&nbsp;</p>
 <h3 id="Fragment-Shader"><a href="#Fragment-Shader" class="headerlink" title="Fragment Shader"></a>Fragment Shader</h3><p>Use interpolated data as input, carry on corresponding shading computations pixel by pixel, like lighting, texture mapping, etc.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>This is just an overview of rendering pipeline which mainly goes through some fundamental concepts without any code. Rendering pipeline is a core of computer graphics. It is what you have to know, if you want to be engaged in related fields, and I highly recommend you to study on <a href="https://learnopengl.com" target="_blank" rel="noopener">LearnOpenGL</a> which is a really good online OpenGL tutorial with both concepts and program guide. See you guys next time!</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://learnopengl.com" target="_blank" rel="noopener">LearnOpenGL</a></p>
 
             </div>
@@ -710,7 +720,7 @@
 
            
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">5.4k</span>
+                <span class="white-color">6.5k</span>
             
 
             

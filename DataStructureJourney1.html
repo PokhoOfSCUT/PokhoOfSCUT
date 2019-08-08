@@ -396,8 +396,10 @@
 </blockquote>
 <p>When a list contains no elements, we call it an <code>empty</code> list. The number of elements that are currently stored in the list is called <code>length</code> of the list. The beginning of the list is called <code>head</code>, while the end of the list is called <code>tail</code>.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="List-Operations"><a href="#List-Operations" class="headerlink" title="List Operations"></a>List Operations</h2><p>A list without any operations related to it is meaningless. Before we define a data structure implementation, we should first design some list operations. </p>
 <p>Obviously, a list should be capable of extending and shrinking. For extending, we can simply append an element at the end of the list or insert an element at a particular position. For shrinking, we should remove an element and shift all the elements behind to the head direction. Additionally, we should be able to get access to all the elements in the list for the purpose of retrieving. Although these are just some basic operations, you are free to add some more to make your data structure versatile.</p>
+<p>&nbsp;</p>
 <h3 id="List-ADT"><a href="#List-ADT" class="headerlink" title="List ADT"></a>List ADT</h3><p>ADT is short for <code>abstract data type</code>. It is a realization of a data type as a software component. It contains the logic of data storing and some operations on the data. However, it is just an interface, which is separated from its corresponding implementation, making it possible for users to apply it simply without being stuck on the detail.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span> <span class="token keyword">class</span> <span class="token class-name">List</span> <span class="token punctuation">{</span>
@@ -447,6 +449,7 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <hr>
+<p>&nbsp;</p>
 <h2 id="List-Implementation"><a href="#List-Implementation" class="headerlink" title="List Implementation"></a>List Implementation</h2><h3 id="Array-based-List"><a href="#Array-based-List" class="headerlink" title="Array-based List"></a>Array-based List</h3><pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span>
 <span class="token keyword">class</span> <span class="token class-name">ArrayList</span><span class="token operator">:</span> <span class="token keyword">public</span> List<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
@@ -540,6 +543,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
+<p>&nbsp;</p>
 <h3 id="Linked-List"><a href="#Linked-List" class="headerlink" title="Linked List"></a>Linked List</h3><p>List node implementation:</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span> <span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">{</span>
@@ -699,10 +703,13 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>These two basic list implementations do have their own pros and cons respectively. For array-based list, it is obvious that the size of it has to be predetermined and it is fixed. While with linked list, you can dynamically adjust the size of the list by inserting or removing nodes, however, it requires more space since a node has to store a pointer to the next node, except for the element. As to the time cost, the array-based list is more time-consuming when it comes to the inserting and removing, because the list has to resort all the elements following, which is not neccessary in the linked list.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Bye-Bye"><a href="#Bye-Bye" class="headerlink" title="Bye Bye"></a>Bye Bye</h2><p>The first part of the data structure is finished. I think it is a very good start and a beneficial warm-up for me, whose purpose is to learn and to get more familiar with data structure. I hope you guys like it, and see you next time.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Data Structure &amp; Algorithm Analysis in C++ - Clifford A. Shafter</p>
 
             </div>
@@ -936,7 +943,7 @@ I’m so glad that I finally manage to build my own blog, and I cannot wait to s
 
            
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">5.4k</span>
+                <span class="white-color">6.5k</span>
             
 
             

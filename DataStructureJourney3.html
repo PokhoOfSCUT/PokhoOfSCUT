@@ -4,8 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Data Structure Review#2 - Stack, Rhys&#39;s">
-    <meta name="description" content="What Is A StackStack is a list-like structure in which elements maybe inserted or removed from only one end. It seems th">
+    <meta name="keywords" content="Data Structure Review#3 - Binary Tree 1 of 4, Rhys&#39;s">
+    <meta name="description" content="OverviewA binary tree is made up of a finite set of elements called nodes. This set either is empty or consists of a nod">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Data Structure Review#2 - Stack | Rhys&#39;s</title>
+    <title>Data Structure Review#3 - Binary Tree 1 of 4 | Rhys&#39;s</title>
     <link rel="icon" type="image/png" href="/logo1.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -230,7 +230,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Data Structure Review#2 - Stack
+                        Data Structure Review#3 - Binary Tree 1 of 4
                     </div>
                 </div>
             </div>
@@ -365,21 +365,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2019-07-27
+                    2019-08-08
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        556
+                        1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
-                        3 Min
+                        6 Min
                     </div>
                     
                 
@@ -390,137 +390,114 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="What-Is-A-Stack"><a href="#What-Is-A-Stack" class="headerlink" title="What Is A Stack"></a>What Is A Stack</h2><p>Stack is a list-like structure in which elements maybe inserted or removed from only one end. It seems that this makes it less practical and less flexible than the lists, but it also makes it easy to implement and more efficient. We call this feature “LIFO” which stands for “Last-In, First-Out”. Simply, the insertion order goes reverse to that of removal.</p>
+                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>A <code>binary tree</code> is made up of a finite set of elements called <code>nodes</code>. This set either is empty or consists of a node called the <code>root</code> together with two binary trees, called the left and right <code>subtrees</code>. The roots of these subtrees are childeren of the root.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/08/6b583c11b31171fec41032cf5bdde131.png" alt></p>
+<p>Binary tree is widely used, and it permits both efficient access and update to large collections of data. Apart from organizing and searching, it is also applied for many things, like prioritizing jobs, describing mathematical expressions and the syntactic elements of computer programs, etc.</p>
 <hr>
 <p>&nbsp;</p>
-<h2 id="Stack-ADT"><a href="#Stack-ADT" class="headerlink" title="Stack ADT"></a>Stack ADT</h2><p>Before we define a stack ADT, we have to make something clear. There is only one element in the stack accessible, that is the one on the top of the stack, which we call the <code>top</code> element. The insertion operation on a stack is called <code>push</code>. The removal operation is called <code>pop</code>. And it is worth noticing that we can just pop out the top element.</p>
-<pre class=" language-cpp"><code class="language-cpp">
-<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span> <span class="token keyword">class</span> <span class="token class-name">Stack</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token comment" spellcheck="true">// Reinitialize the stack</span>
-    <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">// Push an element onto the stack</span>
-    <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">Push</span><span class="token punctuation">(</span><span class="token keyword">const</span> E<span class="token operator">&amp;</span> element<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">// Pop out the top element</span>
-    <span class="token keyword">virtual</span> E <span class="token function">Pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">// Return the top value</span>
-    <span class="token keyword">virtual</span> <span class="token keyword">const</span> E<span class="token operator">&amp;</span> <span class="token function">TopValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">// Return the stack size</span>
-    <span class="token keyword">virtual</span> <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<hr>
+<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><p><img src="https://ww1.yunjiexi.club/2019/08/08/7722f93a9165c20a1d383b66ff886b6b.png" alt></p>
+<p>This is a graph presenting a simple binary tree. The lines between nodes are called <code>edges</code>. Say $N_1$, $N_2$, and $N_5$ is a sequence of nodes, and they are in an order from ancestor to descendant, then this sequence is called a <code>path</code> from $N_1$ to $N_5$. And the length of the path is the number of the edges in the path, which is, in this case, 2. The <code>depth</code> of a node in the tree is the length of the path from the root of the tree to the node itself. For instance, the node $N_4$ holds a depth of 2, while the $N_1$, the root of the tree, holds a depth of 0. The <code>height</code> of a node is 1 more than its depth.</p>
+<p>The node without any child node which, in another word, has two empty children is called a <code>leaf</code> node. A node that has at least one non-empty child is called <code>internal</code> node.</p>
 <p>&nbsp;</p>
-<h2 id="Stack-Implementation"><a href="#Stack-Implementation" class="headerlink" title="Stack Implementation"></a>Stack Implementation</h2><h3 id="Array-based-Stack-Implementation"><a href="#Array-based-Stack-Implementation" class="headerlink" title="Array-based Stack Implementation"></a>Array-based Stack Implementation</h3><pre class=" language-cpp"><code class="language-cpp">
-<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span>
-<span class="token keyword">class</span> <span class="token class-name">ArrayStack</span><span class="token operator">:</span> <span class="token keyword">public</span> Stack<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token keyword">private</span><span class="token operator">:</span>
-    <span class="token keyword">int</span> maxSize<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Maximum number of elements the stack can store</span>
-    <span class="token keyword">int</span> top<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Index for the top element</span>
-    E<span class="token operator">*</span> listArray<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Array holding the element</span>
-
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token function">ArrayStack</span><span class="token punctuation">(</span><span class="token keyword">int</span> size <span class="token operator">=</span> defaultSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        maxSize <span class="token operator">=</span> defaultSize<span class="token punctuation">;</span>
-        top <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        listArray <span class="token operator">=</span> <span class="token keyword">new</span> E<span class="token punctuation">[</span>maxSize<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token operator">~</span><span class="token function">ArrayStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> listArray<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">void</span> <span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> listArray<span class="token punctuation">;</span>
-        top <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        listArray <span class="token operator">=</span> <span class="token keyword">new</span> E<span class="token punctuation">[</span>maxSize<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">void</span> <span class="token function">Push</span><span class="token punctuation">(</span><span class="token keyword">const</span> E<span class="token operator">&amp;</span> element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">Assert</span><span class="token punctuation">(</span><span class="token punctuation">(</span>top <span class="token operator">!=</span> maxSize<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Stack is full!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        listArray<span class="token punctuation">[</span>top<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> element<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    E <span class="token function">Pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">Assert</span><span class="token punctuation">(</span><span class="token punctuation">(</span>top <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Stack is empty!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> listArray<span class="token punctuation">[</span><span class="token operator">--</span>top<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">const</span> E<span class="token operator">&amp;</span> <span class="token function">TopValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> listArray<span class="token punctuation">[</span>top <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> top<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>&nbsp;</p>
-<h3 id="Linked-Stack-Implementation"><a href="#Linked-Stack-Implementation" class="headerlink" title="Linked Stack Implementation"></a>Linked Stack Implementation</h3><pre class=" language-cpp"><code class="language-cpp">
-<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> E<span class="token operator">></span>
-<span class="token keyword">class</span> <span class="token class-name">LinkedStack</span><span class="token operator">:</span> <span class="token keyword">public</span> Stack<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token keyword">private</span><span class="token operator">:</span>
-    Node<span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token operator">*</span> top<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Pointer to the top element</span>
-    <span class="token keyword">int</span> size<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// The number of element in the stack</span>
-
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token function">LinkedStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        top <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token operator">~</span><span class="token function">LinkedStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">void</span> <span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>top <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Node<span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token operator">*</span> node <span class="token operator">=</span> top<span class="token punctuation">;</span>
-            top <span class="token operator">=</span> top<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
-            <span class="token keyword">delete</span> node<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">void</span> <span class="token function">Push</span><span class="token punctuation">(</span><span class="token keyword">const</span> E<span class="token operator">&amp;</span> element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        top <span class="token operator">=</span> <span class="token keyword">new</span> Node<span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> top<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        size<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    E <span class="token function">Pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">Assert</span><span class="token punctuation">(</span><span class="token punctuation">(</span>top <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Stack is empty!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Node<span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token operator">*</span> node <span class="token operator">=</span> top<span class="token punctuation">;</span>
-        E element <span class="token operator">=</span> node<span class="token operator">-</span><span class="token operator">></span>element<span class="token punctuation">;</span>
-        top <span class="token operator">=</span> node<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
-        <span class="token keyword">delete</span> node<span class="token punctuation">;</span>
-        size<span class="token operator">--</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> element<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">const</span> E<span class="token operator">&amp;</span> <span class="token function">TopValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">Assert</span><span class="token punctuation">(</span><span class="token punctuation">(</span>top <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Stack is empty!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> top<span class="token operator">-</span><span class="token operator">></span>element<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">int</span> <span class="token function">Length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> size<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
+<h3 id="Full-amp-Complete-Binary-Tree"><a href="#Full-amp-Complete-Binary-Tree" class="headerlink" title="Full &amp; Complete Binary Tree"></a>Full &amp; Complete Binary Tree</h3><p>A <code>full binary tree</code> is a tree in which each node is a internal node with two children or a leaf. A <code>complete binary tree</code> is a tree that each level of it is filled from left to right.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/09/d624bcafe56836d926b253b253a656a7.png" alt></p>
 <blockquote>
-<p>Notice:</p>
+<p>Theorem:</p>
 <ol>
-<li>Here is a very important difference we have to notice between these two implementations. That is the top element in a array-based stack is at the end of the array, while the top element in a linked stack is at the very beginning, although they are both called top element. This kind of design make it easier to implement pushing and popping for both.</li>
-<li>The <code>Node</code> class has been defined last time. Check <a href="/DataStructureJourney1.html" title="here">here</a>!</li>
+<li>The number of empty subtrees in a non-empty binary tree is one more than the number of nodes in the tree.</li>
+<li>The number of leaves in a non-empty full binary tree is one more than the number of internal nodes.</li>
 </ol>
 </blockquote>
 <hr>
 <p>&nbsp;</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>All operations for the two implementations above both take constant time, so as for time aspect, they are equally efficient. The comparison of the total space requried is similar to the lists implementation: the array-based has to be predetermined and fixed, and the linked can flexibly adjust size but requires extra space for pointers.</p>
+<h2 id="Binary-Tree-Traversals"><a href="#Binary-Tree-Traversals" class="headerlink" title="Binary Tree Traversals"></a>Binary Tree Traversals</h2><p>We will never use a data structure just for storing something, instead we definitely want to retrieve some of them later. For a binary tree, we sometimes just want to get access to a specific node. But in some cases, we may want to visit all nodes in order. There are 3 types traversals for a binary tree: <code>preorder</code>, <code>inorder</code>, and <code>postorder</code>. Literally, we can tell that the difference between them is the time when the root node of a tree or a subtree is visited.</p>
+<p>&nbsp;</p>
+<h3 id="Preorder-Traversal"><a href="#Preorder-Traversal" class="headerlink" title="Preorder Traversal"></a>Preorder Traversal</h3><p>In preorder traversal, the root node of a tree or a subtree is the first node to be visited, prior to its left and right children. And then the left child node is visited, the right child node is the last one. When a preorder traversal is carried on, we first visit the root node of the tree, and if it has a non-empty left child, visit it. And next, we do the same thing to the subtree whose root node is this left child. Not until all the left nodes are visited, we start with the right ones.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/09/d16034a8470ca5010987ddffc94af60b.png" alt></p>
+<p>So, the result of the preorder traversal on the above tree will be:</p>
+<p>$$ ABDHIEJCFG $$</p>
+<p>&nbsp;</p>
+<h3 id="Inorder-Traversal"><a href="#Inorder-Traversal" class="headerlink" title="Inorder Traversal"></a>Inorder Traversal</h3><p>In inorder traversal, the root of a tree or a subtree is the second node to be visited, right behind the left the child. When we carry on an inorder traversal, we first check if the root has a non-empty left child. If did, we don’t visit its left child but check it until we reach the most left child and visit this child. And then visit its parent, and check the left child of the parent’s right child and repeat. This may be a little bit confusing. If you don’t catch on, just read few more times along with the result:</p>
+<p>$$  HDIBJEAFCG $$</p>
+<p>&nbsp;</p>
+<h3 id="Postorder-Traversal"><a href="#Postorder-Traversal" class="headerlink" title="Postorder Traversal"></a>Postorder Traversal</h3><p>For now, the definition of postorder travsersal should be clear to you after going through the previous two traversals: visit a root after you complete visiting its left child and right child. If a root has a non-empty left child, we keep checking until we reach the most left child and visit it. Then do the same thing to the right child of the same level, and finally visited the parent. The corresponding result will be like:</p>
+<p>$$ HIDJEBFGCA $$</p>
+<hr>
+<p>&nbsp;</p>
+<h2 id="Binary-Tree-Node"><a href="#Binary-Tree-Node" class="headerlink" title="Binary Tree Node"></a>Binary Tree Node</h2><p>Finally the coding time! Let’s define a struct for the binary tree node, preparing for the upcoming practical tree structures.</p>
+<pre class=" language-cpp"><code class="language-cpp">
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> Key<span class="token punctuation">,</span> <span class="token keyword">typename</span> E<span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+    Key k<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// The node's key</span>
+    E e<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// The node's value</span>
+    Node<span class="token operator">*</span> lc<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Left child</span>
+    Node<span class="token operator">*</span> rc<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Right child</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        lc <span class="token operator">=</span> rc <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">Node</span><span class="token punctuation">(</span>Key kVal<span class="token punctuation">,</span> E eVal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        k <span class="token operator">=</span> kVal<span class="token punctuation">;</span>
+        e <span class="token operator">=</span> eVal<span class="token punctuation">;</span>
+        lc <span class="token operator">=</span> rc <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Return the contents of the node</span>
+    E<span class="token operator">&amp;</span> <span class="token function">GetValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> e<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Set the value of the node</span>
+    <span class="token keyword">void</span> <span class="token function">SetValue</span><span class="token punctuation">(</span><span class="token keyword">const</span> E<span class="token operator">&amp;</span> eVal<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        e <span class="token operator">=</span> eVal<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Get the key</span>
+    Key<span class="token operator">&amp;</span> <span class="token function">GetKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> k<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Set the key</span>
+    <span class="token keyword">void</span> <span class="token function">SetKey</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key<span class="token operator">&amp;</span> kVal<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        k <span class="token operator">=</span> kVal<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Set and return left child</span>
+    <span class="token keyword">void</span> <span class="token function">SetLeft</span><span class="token punctuation">(</span>Node<span class="token operator">*</span> l<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        lc <span class="token operator">=</span> l<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    Node<span class="token operator">*</span> <span class="token function">GetLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> lc<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Set and return right child</span>
+    <span class="token keyword">void</span> <span class="token function">SetRight</span><span class="token punctuation">(</span>Node<span class="token operator">*</span> r<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        rc <span class="token operator">=</span> r<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    Node<span class="token operator">*</span> <span class="token function">GetRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> rc<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// Check if this is a leaf node</span>
+    <span class="token keyword">bool</span> <span class="token function">IsLeaf</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>lc <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>rc <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&nbsp;</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Binary tree is a really tricky one compared to what we’ve went through before and it is widely used, so it is important for you to learn about it. This time we clarified some basic properties of binary tree and had a look at 3 types of the tree traversals. And in the end, we completed the node structure for our next challenge. The most difficult part for most of you may be the traversals. However, what I’m going to tell you is that it is not that hard to understand, and it will even be easier when we code them next time.</p>
 <hr>
 <p>&nbsp;</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Data Structure &amp; Algorithm Analysis in C++ - Clifford A. Shafter</p>
@@ -561,68 +538,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
-            <div class="card">
-                <a href="/CG1-RenderingPipeline.html">
-                    <div class="card-image">
-                        
-                        <img src="https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg" class="responsive-img" alt="OpenGL Review#1 - Rendering Pipeline">
-                        
-                        <span class="card-title">OpenGL Review#1 - Rendering Pipeline</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Computer graphics is a sub-field of computer science which focuses on visual contents. Here we mainly refer to the 3D aspect, and discard 2D aspect like image processing, etc.
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-27
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
-                                    OpenGL
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Computer-Graphics/" target="_blank">
-                        <span class="chip bg-color">Computer Graphics</span>
-                    </a>
-                    
-                    <a href="/tags/OpenGL/" target="_blank">
-                        <span class="chip bg-color">OpenGL</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fa fa-chevron-right"></i>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/DataStructureJourney1.html">
+                <a href="/DataStructureJourney3.html">
                     <div class="card-image">
                         
-                        <img src="/medias/datastructure/data-structure.jpg" class="responsive-img" alt="Data Structure Review#1 - List">
+                        <img src="/medias/datastructure/data-structure.jpg" class="responsive-img" alt="Data Structure Review#3 - Binary Tree 1 of 4">
                         
-                        <span class="card-title">Data Structure Review#1 - List</span>
+                        <span class="card-title">Data Structure Review#3 - Binary Tree 1 of 4</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -633,7 +559,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-26
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-08
                             </span>
                         <span class="publish-author">
                             
@@ -647,11 +573,68 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/Data-Structure/" target="_blank">
                         <span class="chip bg-color">Data Structure</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/UnityEditorDev4.html">
+                    <div class="card-image">
+                        
+                        <img src="https://ww1.yunjiexi.club/2019/07/30/nRzLN.png" class="responsive-img" alt="Unity Editor Scripting#4 - A Real Custom Editor">
+                        
+                        <span class="card-title">Unity Editor Scripting#4 - A Real Custom Editor</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Unity editor extension is a really amazing feature, which allows you to custom your own unity editor window to offer you specialized functionalities.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Unity/" class="post-category" target="_blank">
+                                    Unity
+                                </a>
+                            
+                            <a href="/categories/Unity/Unity-Editor/" class="post-category" target="_blank">
+                                    Unity Editor
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Unity/" target="_blank">
+                        <span class="chip bg-color">Unity</span>
+                    </a>
+                    
+                    <a href="/tags/Unity-Editor/" target="_blank">
+                        <span class="chip bg-color">Unity Editor</span>
                     </a>
                     
                 </div>
@@ -762,6 +745,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 <footer class="page-footer bg-color">
     <div class="container row center-align">

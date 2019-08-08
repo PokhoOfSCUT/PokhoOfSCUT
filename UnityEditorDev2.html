@@ -380,7 +380,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        921
+                        932
                     </div>
                     
 
@@ -401,10 +401,14 @@
                 <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Last time we learned how create a custom editor window, and in this chapter we are going to add some UI controls that we can interact with to make the window more like a tool.</p>
 <p>Before this, we have to shed light on some concepts first.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="GUI-vs-EditorGUI"><a href="#GUI-vs-EditorGUI" class="headerlink" title="GUI vs EditorGUI"></a>GUI vs EditorGUI</h2><p>These are 2 important Unity UI API classes. The difference between them is mostly the use case. Simply saying, the <code>GUI</code> is used in the game scene to display UI items, while the <code>EditorGUI</code> is used in editor extension to display UI items in the custom window. When you use them, you have to manually adjust the layout of the UI.</p>
+<p>&nbsp;</p>
 <h2 id="GUILayout-vs-EditorGUILayout"><a href="#GUILayout-vs-EditorGUILayout" class="headerlink" title="GUILayout vs EditorGUILayout"></a>GUILayout vs EditorGUILayout</h2><p>We can regard these two as the wrappers of GUI and EditorGUI, the UI classes with automatic layout. It means you are able to create your UI more efficiently since you don’t have to adjust the layout manually. We will use <code>GUILayout</code> and <code>EditorGUILayout</code> in this chapter.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Intro-and-Usage"><a href="#Intro-and-Usage" class="headerlink" title="Intro and Usage"></a>Intro and Usage</h2><p>The functions to create specific UI items in GUILayout and EditorGUILayout are static, so you can apply them by doing <code>GUILayout.xxx</code> or <code>EditorGUILayout.xxx</code>. More importantly, you have to make sure that you put all these functions witin <code>OnGUI</code> function which is responsible for UI rendering.</p>
+<p>&nbsp;</p>
 <h3 id="CurveField"><a href="#CurveField" class="headerlink" title="CurveField"></a>CurveField</h3><p><code>CurveField</code> is what you use to make a curve field for editing an <a href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html" target="_blank" rel="noopener">AnimationCurve</a>.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
@@ -425,6 +429,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/07/31/980329aff1cbf994ade225410338f284.png" alt></p>
+<p>&nbsp;</p>
 <h3 id="ColorField"><a href="#ColorField" class="headerlink" title="ColorField"></a>ColorField</h3><p><code>ColorFiled</code> is what you can use to make color field with color picker.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
@@ -444,6 +449,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/07/31/a5b6f83c06e1653b19a163408f9b8b13.png" alt></p>
+<p>&nbsp;</p>
 <h3 id="DelayDoubleField"><a href="#DelayDoubleField" class="headerlink" title="DelayDoubleField"></a>DelayDoubleField</h3><p><code>DelayDoubleField</code> can make a input field for entering doubles. <code>DoubleField</code> holds the similar functionality, but the value is changed right away after the contents in the input field change. As to DelayDoubleField, the value is only changed if the enter is pressed or the focus is moved away.</p>
 <blockquote>
 <p>Notice:<br>Additionally, there are <code>DelayIntField</code>, <code>DelayFloatField</code>, and <code>DelayTextField</code>. They resemble the way of usage, here we only take <code>DelayDoubleField</code> as an example. Check <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">here</a> for more information.</p>
@@ -466,6 +472,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/07/31/29ad4137186aca6a93f46e2bf7ad9003.png" alt></p>
+<p>&nbsp;</p>
 <h3 id="EnumFlagsField"><a href="#EnumFlagsField" class="headerlink" title="EnumFlagsField"></a>EnumFlagsField</h3><p>Displays a menu with an option for every value of the enum type when clicked. An option for the value <code>0</code> with name <code>Nothing</code> and an option for the value <code>~0</code> (that is, all bits set) with the name <code>Everything</code> are always displayed at the top of the menu. The names for the values 0 and ~0 can be overriden by defining these values in the enum type.</p>
 <blockquote>
 <p>Notice:<br>This method only supports enums whose underlying types are supported by Unity’s serialization system (sbyte, short, int, byte, ushort, or uint). For enums backed by an unsigned type, the “Everything” option should have the value corresponding to all bits set (i.e. ~0 in an unchecked context or the MaxValue constant for the type).</p>
@@ -497,6 +504,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/07/31/cb313803dc8f7f2e4d31b1e6343ba27a.png" alt></p>
+<p>&nbsp;</p>
 <h3 id="EnumPopup"><a href="#EnumPopup" class="headerlink" title="EnumPopup"></a>EnumPopup</h3><p><code>EnumPopup</code> also display a menu with all values with enum type, but it is not like <code>EnumFlagsField</code>. Only one value can be selected at one time, and any type of combination is prohibited.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">enum</span> Selection
@@ -521,6 +529,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/07/31/f78dcce0e057985063e0f8074be53f8c.png" alt></p>
+<p>&nbsp;</p>
 <h3 id="Button-amp-Label"><a href="#Button-amp-Label" class="headerlink" title="Button &amp; Label"></a>Button &amp; Label</h3><p><code>Button</code> function is not in <code>EditorGUILayou</code> class, instead of <code>GUILayout</code> class. We’ve known that these two classes are similar in a lot of ways, and they even have some functions in common. However, we usually use EditorGUILayout for the editable UI elements, while for the static ones, we choose GUILayout. But this is not a rule, you can choose not to follow.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">enum</span> Selection
@@ -563,8 +572,10 @@
 <p>Now, you can click the button to switch the selection value.</p>
 <p><img src="https://ww1.yunjiexi.club/2019/07/31/58b42c4b08c706fbc7300879956c5206.png" alt></p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Since there are too many controls, and most of them are so similar to use, so I cut off here. If you’ve coded like above and seen what happened in the Unity, you may noticed that we can interact with those UI controls, but they are not functional. This is because they are not connected with other stuff yet. Next time I will list some examples and continue to put up some advanced UI controls. If you want to learn more, you can check the references.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">Unity Documents</a></p>
 
             </div>
@@ -824,7 +835,7 @@
 
            
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">5.4k</span>
+                <span class="white-color">6.5k</span>
             
 
             

@@ -380,7 +380,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        749
+                        757
                     </div>
                     
 
@@ -403,7 +403,9 @@
 <p>By using a horizontal group, we can make these buttons evenly stand in the same line:</p>
 <p><img src="https://ww1.yunjiexi.club/2019/08/02/5f5023713c657cc2ae545e9c303b4d0a.png" alt></p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Intro-and-Usage"><a href="#Intro-and-Usage" class="headerlink" title="Intro and Usage"></a>Intro and Usage</h2><p>Typically, the <code>Group</code> function consists of a beginning part, a ending part, and all the UI controls between them. The beginning part is mostly named <code>Beginxxx</code>, while the ending part is mostly named <code>Endxxx</code>. Same with UI controls, they are also static in the <code>EditorGUILayout</code> class.</p>
+<p>&nbsp;</p>
 <h3 id="BeginHorizontal"><a href="#BeginHorizontal" class="headerlink" title="BeginHorizontal"></a>BeginHorizontal</h3><p><code>BeginHorizontal</code> is what used just now to make two buttons in the same line evenly. You can make anything in the same line, for instance, a button along with a text field, a text field along with a color picker, etc. You can even put 3 or more items together, but always pay attention to the window size. If you organize too many items in the same line and your window width is not enough, it will make it diffcult to identify them clearly.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
@@ -423,6 +425,7 @@
 
 <span class="token punctuation">}</span>
 </code></pre>
+<p>&nbsp;</p>
 <h3 id="BeginFadeGroup"><a href="#BeginFadeGroup" class="headerlink" title="BeginFadeGroup"></a>BeginFadeGroup</h3><p><code>BeginFadeGroup</code> can make the area that contains a collection of UI items partially or completely faded. It depends on the value of the parameter it takes. It takes a float within the range from $0$ to $1$, and $0$ means that nothing is faded while $1$ for everything faded.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
@@ -445,6 +448,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/08/02/bb223a09ab4812a0f8454c5781502755.png" alt></p>
+<p>&nbsp;</p>
 <h3 id="BeginFoldoutHeaderGroup"><a href="#BeginFoldoutHeaderGroup" class="headerlink" title="BeginFoldoutHeaderGroup"></a>BeginFoldoutHeaderGroup</h3><p><code>BeginFoldoutHeaderGroup</code> is useful when your custom editor has a very huge section that force you scroll down a lot to skip it. With BeginFoldoutHeaderGroup, you can just fold the whole section if it it not being used. Just like the header of a component you can easily see in a inspector.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
@@ -474,6 +478,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/08/02/5caa72dd449332dddce343b5d124d1eb.png" alt></p>
+<p>&nbsp;</p>
 <h3 id="BeginScrollView"><a href="#BeginScrollView" class="headerlink" title="BeginScrollView"></a>BeginScrollView</h3><p>I believe that you all have used <code>ScrollView</code> control in UGUI system, <code>BeginScrollView</code> is pretty much the same, offering a display area with bar to scroll to view excess contents.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
@@ -502,6 +507,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/08/02/838afeedefef690522dbd100367da90d.png" alt></p>
+<p>&nbsp;</p>
 <h3 id="BeginToggleGroup"><a href="#BeginToggleGroup" class="headerlink" title="BeginToggleGroup"></a>BeginToggleGroup</h3><p><code>BeginToggleGroup</code> gives a toggle control above the collection of items, and you can determine the availability of the collection with it. If you checke the toggle, the items are available. If not, they are not available.</p>
 <pre class=" language-cpp"><code class="language-cpp">
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleWindow</span> <span class="token operator">:</span> EditorWindow
@@ -535,8 +541,10 @@
 </code></pre>
 <p><img src="https://ww1.yunjiexi.club/2019/08/02/97e03b91917d05299e8aa157d95aff42.png" alt></p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Even though we only code couple of lines, but the result is pretty good, we’ve got a very good start. This is just an iceberg of Unity editor, and if you want to create much better one, you can find some open source projects to study their source codes or get on the <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">Unity.com</a> to look through the documentation.</p>
 <hr>
+<p>&nbsp;</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://docs.unity3d.com/ScriptReference/EditorGUILayout.html" target="_blank" rel="noopener">Unity Documents</a></p>
 
             </div>
@@ -803,7 +811,7 @@
 
            
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">5.4k</span>
+                <span class="white-color">6.5k</span>
             
 
             
