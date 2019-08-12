@@ -394,7 +394,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>You may have heard of <code>binary search</code>. If you are searching for an item among an sorted array using binary search, it starts with checking the equality of the search value $K$ and the middle value of the array $K_m$. If they equal, the processing immediately stops. If the $K &gt; K_m$, then it goes to check the equality of the $K$ and the middle value among the subarray consisting of all the item on the right the $K_m$, or on the left for the case $K &lt; K_m$. And keep doing this until the match is found.</p>
+                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>You may have heard of <code>binary search</code>. If you are searching for an item among an sorted array using binary search, it starts with checking the equality of the search value $K$ and the middle value of the array $K_m$. If they equal, the processing immediately stops. If the $K &gt; K_m$, then it goes to check the equality of the $K$ and the middle value among the subarray consisting of all the item on the right of the $K_m$, or on the left for the case $K &lt; K_m$. And keep doing this until the match is found.</p>
 <blockquote>
 <p>Notice:<br>A significant thing here is that the array on which the binary search is performed must be sorted, whatever ascendingly or descendingly.</p>
 </blockquote>
@@ -527,7 +527,7 @@
 <p>&nbsp;</p>
 <h2 id="Demonstration"><a href="#Demonstration" class="headerlink" title="Demonstration"></a>Demonstration</h2><p>I’ve constructed a binary search tree like this:</p>
 <p><img src="https://ww1.yunjiexi.club/2019/08/11/f4bdb350b2b5b4809ac3e9206d2c276b.png" alt></p>
-<p>Now we delete the root node holding $100$. According to the deletion and reconstruction scheme we talked about, The $110$ will take place of it. And the $120$ will be set as the right child of the $115$. So if we try to get access to the right child of $115$, it should print out the information of $120$.</p>
+<p>Now we delete the root node holding $100$. According to the deletion and reconstruction scheme we talked about, the $110$ will take place of it. And the $120$ will be set as the right child of the $115$. So if we try to get access to the right child of $115$, it should print out the information of $120$.</p>
 <pre class=" language-cpp"><code class="language-cpp">BSTree tree<span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">// Create and insert nodes</span>
@@ -543,7 +543,7 @@ Node<span class="token operator">&lt;</span><span class="token keyword">unsigned
 <p>We succeed! You can check the complete source code <a href="https://github.com/PokhoOfSCUT/DataStructureReview/tree/master/BinarySearchTree/BinarySearchTree" target="_blank" rel="noopener">here</a>.</p>
 <hr>
 <p>&nbsp;</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Binary search tree is a very important application of binary tree. It is very efficient for a structure on which frequent search operations are perform. For your own damands, you can add a modification function to change the contents or other functions like deletion of the minimum node or the maximum node. And the deletion and reconstruction scheme I offered is just one feasible solutions, since the result subtree forms vary, you can figure out you own solution. Next time we will talk about another application of binary tree. See you!</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Binary search tree is a very important application of binary tree. It is very efficient for a structure on which frequent search operations are performed. For your own damands, you can add a modification function to change the contents or other functions like deletion of the minimum node or the maximum node. And the deletion and reconstruction scheme I offered is just one of the feasible solutions, since the result subtree forms vary, you can figure out you own solution. Next time we will talk about another application of binary tree. See you!</p>
 
             </div>
             <hr/>
