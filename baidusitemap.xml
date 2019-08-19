@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://PokhoOfSCUT.github.io/CG2-Lighting.html</loc>
+    <lastmod>2019-08-19</lastmod>
+  </url>  <url>
+    <loc>http://PokhoOfSCUT.github.io/CG1-RenderingPipeline.html</loc>
+    <lastmod>2019-08-19</lastmod>
+  </url>  <url>
     <loc>http://PokhoOfSCUT.github.io/UnityEditorDev4.html</loc>
     <lastmod>2019-08-19</lastmod>
   </url>  <url>
@@ -29,9 +35,6 @@
     <lastmod>2019-08-08</lastmod>
   </url>  <url>
     <loc>http://PokhoOfSCUT.github.io/DataStructureJourney1.html</loc>
-    <lastmod>2019-08-08</lastmod>
-  </url>  <url>
-    <loc>http://PokhoOfSCUT.github.io/CG1-RenderingPipeline.html</loc>
     <lastmod>2019-08-08</lastmod>
   </url>  <url>
     <loc>http://PokhoOfSCUT.github.io/hello-world.html</loc>

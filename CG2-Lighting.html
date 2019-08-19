@@ -4,8 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Data Structure Review#3 - Binary Tree 1 of 4, Rhys&#39;s">
-    <meta name="description" content="OverviewA binary tree is made up of a finite set of elements called nodes. This set either is empty or consists of a nod">
+    <meta name="keywords" content="Computer Graphics Review#2 - Lighting 1 of 2, Rhys&#39;s">
+    <meta name="description" content="How We Perceive ColorsPhysically, lights propagate in media as the form of waves. This is supported by the Young’s Doubl">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Data Structure Review#3 - Binary Tree 1 of 4 | Rhys&#39;s</title>
+    <title>Computer Graphics Review#2 - Lighting 1 of 2 | Rhys&#39;s</title>
     <link rel="icon" type="image/png" href="/logo1.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -228,13 +228,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/datastructure/data-structure.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Data Structure Review#3 - Binary Tree 1 of 4
+                        Computer Graphics Review#2 - Lighting 1 of 2
                     </div>
                 </div>
             </div>
@@ -345,8 +345,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Data-Structure/" target="_blank">
-                                <span class="chip bg-color">Data Structure</span>
+                            <a href="/tags/Computer-Graphics/" target="_blank">
+                                <span class="chip bg-color">Computer Graphics</span>
+                            </a>
+                        
+                            <a href="/tags/OpenGL/" target="_blank">
+                                <span class="chip bg-color">OpenGL</span>
                             </a>
                         
                     </div>
@@ -357,8 +361,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Data-Structure/" class="post-category" target="_blank">
-                                Data Structure
+                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
+                                OpenGL
                             </a>
                         
                     </div>
@@ -369,21 +373,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2019-08-08
+                    2019-08-19
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        1k
+                        949
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
-                        6 Min
+                        5 Min
                     </div>
                     
                 
@@ -394,130 +398,66 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>A <code>binary tree</code> is made up of a finite set of elements called <code>nodes</code>. This set either is empty or consists of a node called the <code>root</code> together with two binary trees, called the left and right <code>subtrees</code>. The roots of these subtrees are childeren of the root.</p>
-<p><img src="https://ww1.yunjiexi.club/2019/08/08/6b583c11b31171fec41032cf5bdde131.png" alt></p>
-<p>Binary tree is widely used, and it permits both efficient access and update to large collections of data. Apart from organizing and searching, it is also applied for many things, like prioritizing jobs, describing mathematical expressions and the syntactic elements of computer programs, etc.</p>
-<hr>
-<p>&nbsp;</p>
-<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><p><img src="https://ww1.yunjiexi.club/2019/08/08/7722f93a9165c20a1d383b66ff886b6b.png" alt></p>
-<p>This is a graph presenting a simple binary tree. The lines between nodes are called <code>edges</code>. Say $N_1$, $N_2$, and $N_5$ is a sequence of nodes, and they are in an order from ancestor to descendant, then this sequence is called a <code>path</code> from $N_1$ to $N_5$. And the length of the path is the number of the edges in the path, which is, in this case, 2. The <code>depth</code> of a node in the tree is the length of the path from the root of the tree to the node itself. For instance, the node $N_4$ holds a depth of 2, while the $N_1$, the root of the tree, holds a depth of 0. The <code>height</code> of a node is 1 more than its depth.</p>
-<p>The node without any child node which, in another word, has two empty children is called a <code>leaf</code> node. A node that has at least one non-empty child is called <code>internal</code> node.</p>
-<p>&nbsp;</p>
-<h3 id="Full-amp-Complete-Binary-Tree"><a href="#Full-amp-Complete-Binary-Tree" class="headerlink" title="Full &amp; Complete Binary Tree"></a>Full &amp; Complete Binary Tree</h3><p>A <code>full binary tree</code> is a tree in which each node is a internal node with two children or a leaf. A <code>complete binary tree</code> is a tree that each level of it is filled from left to right.</p>
-<p><img src="https://ww1.yunjiexi.club/2019/08/09/d624bcafe56836d926b253b253a656a7.png" alt></p>
+                <h2 id="How-We-Perceive-Colors"><a href="#How-We-Perceive-Colors" class="headerlink" title="How We Perceive Colors"></a>How We Perceive Colors</h2><p>Physically, lights propagate in media as the form of waves. This is supported by the <strong>Young’s Double-Slit Interference Experiment</strong>.</p>
 <blockquote>
-<p>Theorem:</p>
-<ol>
-<li>The number of empty subtrees in a non-empty binary tree is one more than the number of nodes in the tree.</li>
-<li>The number of leaves in a non-empty full binary tree is one more than the number of internal nodes.</li>
-</ol>
+<p>For more information, you can check it out <a href="https://opentextbc.ca/physicstestbook2/chapter/youngs-double-slit-experiment/" target="_blank" rel="noopener">here</a></p>
 </blockquote>
+<p>As waves, they have unique wavelengths. The lights we can see with naked eyes, the visible lights, have wavelengths within the range from $380\ nm$ to $780\ nm$.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/19/88594962adbb74e75bd95a40b5bafe09.jpg" alt></p>
+<p>An opaque object can reflect and absorb lights of specific wavelengths. Simply, if it reflects green lights, wavelengths of around $500\ nm$, and absorb any other lights, the object looks greenish. Similarly, a red object reflects most of the red lights and absorbs other lights. More specially, a white object reflects all visible lights while a black one absorb most of them.</p>
+<p>&nbsp;</p>
+<h3 id="Light-Source"><a href="#Light-Source" class="headerlink" title="Light Source"></a>Light Source</h3><p>Lights don’t just come from nowhere, they are generated by light sources, like the sun or light bulbs. In a rendering system, we regard a light source as a single point without volume. And we use different vectors to present different light directions.</p>
+<p>&nbsp;</p>
+<h3 id="Scattering-and-Absorption"><a href="#Scattering-and-Absorption" class="headerlink" title="Scattering and Absorption"></a>Scattering and Absorption</h3><p>When a light ray hit an object, scattering and absorption happen.</p>
+<p>Scatter only changes the light’s direction whil absorption only has its impact on light’s density and color. When a light ray is scattered, it breaks into two parts: one is scattered outward, which is called <strong>reflection</strong>, the other is scattered inward which is called <strong>refraction</strong>. For an opaque object, the refracted light ray will bounce between the molecules inside the object and go out in another place. This kind of emergent light ray holds different direction and color to the incident light ray.</p>
+<p>To distinguish these two emergent light rays, we use different method to simulate them in a lighting model. We use <strong>Specular</strong> to indicate how an object reflects light, and use <strong>Diffuse</strong> to how many lights are refracted and rescattered out of the object.</p>
+<p>&nbsp;</p>
+<h3 id="Shading"><a href="#Shading" class="headerlink" title="Shading"></a>Shading</h3><p>Shading is to figure out the <strong>exitance</strong> in a specific viewing direction with an euqation based on material properties and lighting information. The equation is also called <strong>Lighting Model</strong>.</p>
 <hr>
 <p>&nbsp;</p>
-<h2 id="Binary-Tree-Traversals"><a href="#Binary-Tree-Traversals" class="headerlink" title="Binary Tree Traversals"></a>Binary Tree Traversals</h2><p>We will never use a data structure just for storing something, instead we definitely want to retrieve some of them later. For a binary tree, we sometimes just want to get access to a specific node. But in some cases, we may want to visit all nodes in order. There are 3 types traversals for a binary tree: <code>preorder</code>, <code>inorder</code>, and <code>postorder</code>. Literally, we can tell that the difference between them is the time when the root node of a tree or a subtree is visited.</p>
+<h2 id="Standard-Lighting-Model"><a href="#Standard-Lighting-Model" class="headerlink" title="Standard Lighting Model"></a>Standard Lighting Model</h2><p>In a standard lighting model which is nonphysical, we take 4 ingredients that contribute to shading. <strong>Emissive</strong>, <strong>Diffuse</strong>, <strong>Specular</strong>, and <strong>Ambient</strong>.</p>
+<ul>
+<li><p>Emissive: indicates how many lights this object itself will emit in a given direction. Notice that without GI, this kind of emissive lights won’t shed any lights on the environment. It just makes itself look glowing.</p>
+</li>
+<li><p>Ambient: simulates the indirect lights, and it is constant for simplicity.</p>
+</li>
+</ul>
 <p>&nbsp;</p>
-<h3 id="Preorder-Traversal"><a href="#Preorder-Traversal" class="headerlink" title="Preorder Traversal"></a>Preorder Traversal</h3><p>In preorder traversal, the root node of a tree or a subtree is the first node to be visited, prior to its left and right children. And then the left child node is visited, the right child node is the last one. When a preorder traversal is carried on, we first visit the root node of the tree, and if it has a non-empty left child, visit it. And next, we do the same thing to the subtree whose root node is this left child. Not until all the left nodes are visited, we start with the right ones.</p>
-<p><img src="https://ww1.yunjiexi.club/2019/08/09/d16034a8470ca5010987ddffc94af60b.png" alt></p>
-<p>So, the result of the preorder traversal on the above tree will be:</p>
-<p>$$ ABDHIEJCFG $$</p>
+<h3 id="Lambert-Lighting-Model"><a href="#Lambert-Lighting-Model" class="headerlink" title="Lambert Lighting Model"></a>Lambert Lighting Model</h3><p>Lambert lighting model is a simple and common way to simulate diffuse color of a rough surface. It is experience-based, depending on the fragment normal and the light direction.</p>
+<p>$$ Diffuse = k_d \times Color \times LightColor \times max(0,\ \vec N \cdot \vec V_{light}) $$</p>
+<p>The $k_d$ is a constant describing the object’s diffuse property.</p>
+<p>$$ Ambient = k_d \times AmbientColor $$</p>
+<p>And the final lamber lighting model is:</p>
+<p>$$ Diffuse + Ambient $$</p>
 <p>&nbsp;</p>
-<h3 id="Inorder-Traversal"><a href="#Inorder-Traversal" class="headerlink" title="Inorder Traversal"></a>Inorder Traversal</h3><p>In inorder traversal, the root of a tree or a subtree is the second node to be visited, right behind the left the child. When we carry on an inorder traversal, we first check if the root has a non-empty left child. If did, we don’t visit its left child but check it until we reach the most left child and visit this child. And then visit its parent, and check the left child of the parent’s right child and repeat. This may be a little bit confusing. If you don’t catch on, just read few more times along with the result:</p>
-<p>$$  HDIBJEAFCG $$</p>
+<h3 id="Half-Lambert-Lighting-Model"><a href="#Half-Lambert-Lighting-Model" class="headerlink" title="Half Lambert Lighting Model"></a>Half Lambert Lighting Model</h3><p>Half lambert lighting is innovated by Valve Corporation when they were developing game <strong>Half Life</strong>. In a dark environment where the diffuse light is weak or the diffuse light is hard to reach, the dot product can be negative. And with the $max$ operation, the dot product remains 0, which means the object’s diffuse color is very dark.</p>
+<p>It is absolutely bad for a game, making player hard to see things in the dark. So Valve substituted a new equation for the former one:</p>
+<p>$$ Diffuse = k_d \times Color \times LightColor \times ((\vec N \cdot \vec V_{light}) \times 0.5 + 0.5) $$</p>
+<p>It maps the dot product onto $[0,\ 1]$ instead of $[-1,\ 1]$, and successfully solves the problem.</p>
 <p>&nbsp;</p>
-<h3 id="Postorder-Traversal"><a href="#Postorder-Traversal" class="headerlink" title="Postorder Traversal"></a>Postorder Traversal</h3><p>For now, the definition of postorder travsersal should be clear to you after going through the previous two traversals: visit a root after you complete visiting its left child and right child. If a root has a non-empty left child, we keep checking until we reach the most left child and visit it. Then do the same thing to the right child of the same level, and finally visited the parent. The corresponding result will be like:</p>
-<p>$$ HIDJEBFGCA $$</p>
+<h3 id="Phong-Lighting-Model"><a href="#Phong-Lighting-Model" class="headerlink" title="Phong Lighting Model"></a>Phong Lighting Model</h3><p>For a piece of paper or a wood log in a simple project, lambert or half lambert can be a good choice which is simple and effcient. However, when it comes to metalls, glasses, or any other reflecting material, they start to be unreal. Because these materials shows specular effects in some ways. If you’d ever observed some materials’ reflections, you would have seen an area filled with intensive white light which makes you hard to see the object’s original color. And that area changes as you change the direction you look at it.</p>
+<p>So, we can tell that the specular highlight not only has something to do with the reflected light, but also the viewing direction.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/19/f9526b2dd82e4777f9af3e99af423fc7.png" alt title="From LearnOpenGL.com"></p>
+<p>$$ \vec R = 2 \times (\vec V_{light} \cdot \vec N) \times \vec N - \vec V_{light} $$</p>
+<p>$$ Specular = k_s \times LightColor \times max(0,\ (\vec R \cdot \vec V_{view}))^{Shininess} $$</p>
+<p>The $k_s$ is a constant describing the material’s specular property. The $Shininess$, also called $Glossiness$, indicates how shiny the object is or how smooth the object is.</p>
+<p>Finally, the phong lighting model is like:</p>
+<p>$$ Ambient + Diffuse + Specular $$</p>
+<blockquote>
+<p>Inplementing the phong lighting model in a vertex shader is called gourand shading.</p>
+</blockquote>
+<p>&nbsp;</p>
+<h3 id="Blinn-Phong-Lighting-Model"><a href="#Blinn-Phong-Lighting-Model" class="headerlink" title="Blinn-Phong Lighting Model"></a>Blinn-Phong Lighting Model</h3><p>Blinn proposed an alternative for specular to avoid calculating reflected vector, which is more efficient. He introduced a new vector called <strong>halfway vector</strong>:</p>
+<p>$$ \vec h = \frac{\vec V_{view} + \vec V_{light}}{|\vec V_{view} + \vec V_{light}|} $$</p>
+<p>$$ Specular = k_s \times LightColor \times max(0,\ (\vec h \cdot \vec N))^{Shininess} $$</p>
+<p>Now we’ve finished the standard lighting model!</p>
 <hr>
 <p>&nbsp;</p>
-<h2 id="Binary-Tree-Node"><a href="#Binary-Tree-Node" class="headerlink" title="Binary Tree Node"></a>Binary Tree Node</h2><p>Finally the coding time! Let’s define a struct for the binary tree node, preparing for the upcoming practical tree structures.</p>
-<pre class=" language-cpp"><code class="language-cpp">
-<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> Key<span class="token punctuation">,</span> <span class="token keyword">typename</span> E<span class="token operator">></span>
-<span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
-<span class="token keyword">private</span><span class="token operator">:</span>
-    Key k<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// The node's key</span>
-    E e<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// The node's value</span>
-    Node<span class="token operator">*</span> lc<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Left child</span>
-    Node<span class="token operator">*</span> rc<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Right child</span>
-    Node<span class="token operator">*</span> parent<span class="token punctuation">;</span>
-
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        parent <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-        lc <span class="token operator">=</span> rc <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token function">Node</span><span class="token punctuation">(</span>Key kVal<span class="token punctuation">,</span> E eVal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        k <span class="token operator">=</span> kVal<span class="token punctuation">;</span>
-        e <span class="token operator">=</span> eVal<span class="token punctuation">;</span>
-        parent <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-        lc <span class="token operator">=</span> rc <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Set and return parent node</span>
-    <span class="token keyword">void</span> <span class="token function">SetParent</span><span class="token punctuation">(</span>Node<span class="token operator">*</span> p<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        parent <span class="token operator">=</span> p<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    Node<span class="token operator">*</span> <span class="token function">GetParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> parent<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Return the contents of the node</span>
-    E<span class="token operator">&amp;</span> <span class="token function">GetValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> e<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Set the value of the node</span>
-    <span class="token keyword">void</span> <span class="token function">SetValue</span><span class="token punctuation">(</span><span class="token keyword">const</span> E<span class="token operator">&amp;</span> eVal<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        e <span class="token operator">=</span> eVal<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Get the key</span>
-    Key<span class="token operator">&amp;</span> <span class="token function">GetKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> k<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Set the key</span>
-    <span class="token keyword">void</span> <span class="token function">SetKey</span><span class="token punctuation">(</span><span class="token keyword">const</span> Key<span class="token operator">&amp;</span> kVal<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        k <span class="token operator">=</span> kVal<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Set and return left child</span>
-    <span class="token keyword">void</span> <span class="token function">SetLeft</span><span class="token punctuation">(</span>Node<span class="token operator">*</span> l<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        lc <span class="token operator">=</span> l<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    Node<span class="token operator">*</span> <span class="token function">GetLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> lc<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Set and return right child</span>
-    <span class="token keyword">void</span> <span class="token function">SetRight</span><span class="token punctuation">(</span>Node<span class="token operator">*</span> r<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        rc <span class="token operator">=</span> r<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    Node<span class="token operator">*</span> <span class="token function">GetRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> rc<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">// Check if this is a leaf node</span>
-    <span class="token keyword">bool</span> <span class="token function">IsLeaf</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token punctuation">(</span>lc <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>rc <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>&nbsp;</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Binary tree is a really tricky one compared to what we’ve went through before and it is widely used, so it is important for you to learn about it. This time we clarified some basic properties of binary tree and had a look at 3 types of the tree traversals. And in the end, we completed the node structure for our next challenge. The most difficult part for most of you may be the traversals. However, what I’m going to tell you is that it is not that hard to understand, and it will even be easier when we code them next time.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>We went through some concepts and basic lighting models. They are not complicated, but really good for us to learn about how we simulate a light phenomenon in a rendering system. Next time we will be talking about PBR, physically-based rendering, which is also called PBS, physically-base shading. It is very sophisticated so we have to extract it out. See you!</p>
 <hr>
 <p>&nbsp;</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Data Structure &amp; Algorithm Analysis in C++ - Clifford A. Shafter</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://learnopengl.com" target="_blank" rel="noopener">LearnOpenGL</a></p>
+<p>[2] <a href="https://opentextbc.ca/physicstestbook2/chapter/youngs-double-slit-experiment" target="_blank" rel="noopener">Young’s Double-Slit Interference</a></p>
 
             </div>
             <hr/>
@@ -555,45 +495,51 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/DataStructureJourney4.html">
+                <a href="/CG2-Lighting.html">
                     <div class="card-image">
                         
-                        <img src="/medias/datastructure/data-structure.jpg" class="responsive-img" alt="Data Structure Review#4 - Binary Tree 2 of 4">
+                        <img src="https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg" class="responsive-img" alt="Computer Graphics Review#2 - Lighting 1 of 2">
                         
-                        <span class="card-title">Data Structure Review#4 - Binary Tree 2 of 4</span>
+                        <span class="card-title">Computer Graphics Review#2 - Lighting 1 of 2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Once you try to program efficiently, you can't prevent data structure from being involved. To help myself review data structure, I started a whole new chapter to talk about it.
+                            Computer graphics is a sub-field of computer science which focuses on visual contents. Here we mainly refer to the 3D aspect, and discard 2D aspect like image processing, etc.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Data-Structure/" class="post-category" target="_blank">
-                                    Data Structure
+                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
+                                    OpenGL
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Data-Structure/" target="_blank">
-                        <span class="chip bg-color">Data Structure</span>
+                    <a href="/tags/Computer-Graphics/" target="_blank">
+                        <span class="chip bg-color">Computer Graphics</span>
+                    </a>
+                    
+                    <a href="/tags/OpenGL/" target="_blank">
+                        <span class="chip bg-color">OpenGL</span>
                     </a>
                     
                 </div>
@@ -607,23 +553,23 @@
                 Next&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/UnityEditorDev4.html">
+                <a href="/UnityShaderDev2.html">
                     <div class="card-image">
                         
-                        <img src="https://ww1.yunjiexi.club/2019/07/30/nRzLN.png" class="responsive-img" alt="Unity Editor Scripting#4 - A Real Custom Editor">
+                        <img src="https://ww1.yunjiexi.club/2019/07/30/nRzLN.png" class="responsive-img" alt="Unity Surface Shader#2 - Create First Shader">
                         
-                        <span class="card-title">Unity Editor Scripting#4 - A Real Custom Editor</span>
+                        <span class="card-title">Unity Surface Shader#2 - Create First Shader</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Unity editor extension is a really amazing feature, which allows you to custom your own unity editor window to offer you specialized functionalities.
+                            In Unity, a shader determines how an object, to which this shader is attached, would be rendered. And we are going to talk about how to create our own custom shaders.
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-05
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-19
                             </span>
                         <span class="publish-author">
                             
@@ -633,8 +579,8 @@
                                     Unity
                                 </a>
                             
-                            <a href="/categories/Unity/Unity-Editor/" class="post-category" target="_blank">
-                                    Unity Editor
+                            <a href="/categories/Unity/Unity-Shader/" class="post-category" target="_blank">
+                                    Unity Shader
                                 </a>
                             
                             
@@ -648,8 +594,8 @@
                         <span class="chip bg-color">Unity</span>
                     </a>
                     
-                    <a href="/tags/Unity-Editor/" target="_blank">
-                        <span class="chip bg-color">Unity Editor</span>
+                    <a href="/tags/Unity-Shader/" target="_blank">
+                        <span class="chip bg-color">Unity Shader</span>
                     </a>
                     
                 </div>
