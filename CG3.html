@@ -1,0 +1,841 @@
+<!DOCTYPE HTML>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Computer Graphics Review#2 - Lighting 2 of 2, Rhys&#39;s">
+    <meta name="description" content="OverviewLast time, we talked about several commonly used lighting models in computer graphics. They are experience-based">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Computer Graphics Review#2 - Lighting 2 of 2 | Rhys&#39;s</title>
+    <link rel="icon" type="image/png" href="/logo1.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+        code[class*="language-"], pre[class*="language-"] {
+            white-space: pre !important;
+        }
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/avatar2.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Rhys's</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Home</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/avatar2.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Rhys's</div>
+        <div class="logo-desc">
+            
+            Do my best, so I cannot blame myself for anything.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Home
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/PokhoOfSCUT" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/PokhoOfSCUT" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Computer Graphics Review#2 - Lighting 2 of 2
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Computer-Graphics/" target="_blank">
+                                <span class="chip bg-color">Computer Graphics</span>
+                            </a>
+                        
+                            <a href="/tags/OpenGL/" target="_blank">
+                                <span class="chip bg-color">OpenGL</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
+                                OpenGL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-08-25
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
+                        2.9k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
+                        17 Min
+                    </div>
+                    
+                
+				
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Last time, we talked about several commonly used lighting models in computer graphics. They are experience-based models, creating simple and unreal lighting effects. And this time we are going to learn about a much more realistic rendering technique: <code>PBR, Physically-Based Rendering</code>. It is more or less based on some theories that resembles the physical principles in the real world, but still, it is just an approximation of lighting in the real world. And this is why we call it physically-based rendering instead of physcal rendering. For a PBR lighting model, there are 3 preconditions:</p>
+<ul>
+<li>Microfacet Model</li>
+<li>Energy Conservation</li>
+<li>Physically-based BRDF</li>
+</ul>
+<p>We will go through these one by one.</p>
+<hr>
+<p>&nbsp;</p>
+<h2 id="Microfacet-Model"><a href="#Microfacet-Model" class="headerlink" title="Microfacet Model"></a>Microfacet Model</h2><p>This theory descirbes that any surface at a microscopic scale can be described by tiny little perfectly reflective mirrors called <code>microfacets</code>. According to the roughness of a surface the alignment of these tiny mirrors can differ quite a lot:</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/09de3044e3848c766efa8599711d2e1c.png" alt title="From LearnOpenGL.com"></p>
+<p>The effect of these tiny-like mirror alignments is that when specifically talking about specular lighting/reflection the incoming light rays are more likely to scatter along completely different directions on rougher surfaces, resulting in a more widespread specular reflection. In contrast, on a smooth surface the light rays are more likely to reflect in roughly the same direction, giving us smaller and sharper reflections:</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/0396206cefbf6d01de3e11b896f67549.png" alt title="From LearnOpenGL.com"></p>
+<p>No surface is completely smooth on a microscopic level, but seeing as these microfacets are small enough that we can’t make a distinction between them on a per-pixel basis we statistically approximate the surface’s microfacet roughness given a roughness parameter. Based on the roughness of a surface we can calculate the ratio of microfacets roughly aligned to some vector $\vec h$. This vector $\vec h$ is the halfway vector that sits halfway between the light $\vec l$ and view $\vec v$ vector. We’ve discussed the halfway vector before in the blinn-phong lighting model which is calculated as the sum of $\vec l$ and $\vec v$ divided by its length:</p>
+<p>$$ \vec h = \frac{\vec l + \vec v}{|\vec l + \vec v|} $$</p>
+<p>The more the microfacets are aligned to the halfway vector, the sharper and stronger the specular reflection. Together with a roughness parameter that varies between 0 and 1 we can statistically approximate the alignment of the microfacets.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/853b7d94518429f935bedd650787edde.png" alt title="From LearnOpenGL.com"></p>
+<hr>
+<p>&nbsp;</p>
+<h2 id="Energy-Conservation"><a href="#Energy-Conservation" class="headerlink" title="Energy Conservation"></a>Energy Conservation</h2><p>Energy conservation describes that the energy of outgoing light rays never exceed that of the incoming light rays. As we can see in the picture above, as the roughness inceases,  the area of reflectance increases but the brightness goes down.</p>
+<p>For energy conservation to hold we need to make a clear distinction between diffuse and specular light. We’ve covered this last time when we talked about the scattering. When a light ray hits a surface, it breaks into a reflection part and a refraction part. The reflection part is the part that doesn’t go inside the object, which we call specular specular lighting. While the refraction part goes under the surface and is partially absorbed, which we call diffuse lighting.</p>
+<p>Physically, we are going to have a deeper look at the “<strong>partial absorption</strong>“. A light ray can be regarded as a beam of energy that keeps moving forward until it loses all its energy, and it loses its energy by colliding with other molecules. All materials consist of innumerable tiny molecules, and these molecules absorb all or part of a light ray’s energy when they collide and turn them into heat. Generally, not all energy is absorbed, and the light ray keeps moving until the energy is totally aborbed or finds another way out the surface. If the light ray is not completely absorbed and finally moves out, it participates in forming the surface’s color, and this is what we call diffuse color.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/b4d7351fbb1870822d5417c6f0904e7e.png" alt title="From LearnOpenGL.com"></p>
+<p>Furthermore, for metallic materials, all refracted lights are completely absorbed and not rescattered out of the surface. So, metallica materials don’t dispaly a diffuse color.</p>
+<p>Based on the distinction between the reflection and refraction, we can conclude that the reflected light and the refracted light are mutually exclusive. We can calculate the total energy of reflected light and the rest goes to refracted light.</p>
+<hr>
+<p>&nbsp;</p>
+<h2 id="Reflectance-Equation"><a href="#Reflectance-Equation" class="headerlink" title="Reflectance Equation"></a>Reflectance Equation</h2><p>To thoroughly understand the reflectance equation, we have to involve a little bit of <strong>Radiometry</strong>.</p>
+<p>$$ L_o(p,\ w_o) = \int_{\Omega}^{ }{f_r(p,\ w_i,\ w_o)L_i(p,\ w_i)n \cdot w_idw_i} $$</p>
+<p>This does look very scary at the beginning, but as we gradually analyze it, I believe we will figure it out. We go through some terms first.</p>
+<p><strong>Radiant flux</strong>: radiant flux $\Phi$ is the transmitted energy of a light source measured in Watts. Light is a collective sum of energy over multiple different wavelengths, each wavelength associated with a particular visible color. The emitted energy of a light source are therefore be thought of as a function of all its different wavelengths. The radiant flux measures the total area of this function of different wavelengths. Directly taking this measure of wavelengths as input in computer graphics is slightly impractical so we often make the simplification of representing radiant flux not as a function of varing wavelength strengths, but as a light color triplet encoded as RGB. This encoding does come at quite a loss of information, but this is generally negligible for visual aspects.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/f86e5a1db8ebf85f091819e37fc6af19.png" alt title="From LearnOpenGL.com"></p>
+<p><strong>Solid angle</strong>: solid angle is represented by $\omega$, describing the size or area of a shape projected onto a unit sphere. The area of the projected shape onto this unit sphere is known as the <code>solid angle</code>. You can visualize the solid angle as a direction with volume:</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/7e0c3e88ed6b9447de5fcb44d075320e.png" alt title="From LearnOpenGL.com"></p>
+<p>Thinking of being an observer at the center of this unit sphere and looking in the direction of the shape, and the size of the silhouette you make out of it is the solid angle.</p>
+<p><strong>Radiant intensity</strong>: radiant intensity measures the amount of radiant flux per solid angle or the strength of a light source over a projected area onto the unit sphere. For instance, given an omnidirectional light that radiates equally in all directions the radiant intensity can give us its energy over a specific area:</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/d3dc7234c156a8ac9e40f48f0e57d1a3.png" alt title="From LearnOpenGL.com"></p>
+<p>The equation to describe the radiant intensity is defined as follows:</p>
+<p>$$ I = \frac{d\Phi}{d\omega} $$</p>
+<p>Where $I$ is the radiant flux $\Phi$ over the solid angle $\omega$.</p>
+<p>With knowledge of radiant flux, radiant intensity and the solid angle we can finally describe the equation for radiance, which is described as the total observed energy over an area $A$ over the solid angle $\omega$ of a light of radiant intensity $\Phi$:</p>
+<p>$$ L = \frac{d^2\Phi}{dAdwcos\theta} $$</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/e6337d3182318a194fa1109251dbf9d9.png" alt title="From LearnOpenGL.com"></p>
+<p>If we consider the solid angle $\omega$ and the area $A$ to be infinitely small, we can us radiance to measure the flux of a single ray of light hitting a single point. This relation allows us to calculate the radiance of a single light ray influencing a single fragment. We effectively translate the solid angle $\omega$ into a direction vector $\omega$, and $A$ into a point $p$. This way we can directly use radiance in our shaders to calculate a single light ray’s per-fragment contribution.</p>
+<p>In fact, when it comes to radiance we generally care about all incoming light onto a point p which is the sum of all radiance known as irradiance. With knowledge of both radiance and <code>irradiance</code> we can get back to the reflectance equation:</p>
+<p>$$ L_o(p,\ w_o) = \int_{\Omega}^{ }{f_r(p,\ w_i,\ w_o)L_i(p,\ w_i)n \cdot w_idw_i} $$</p>
+<p>We now know that L in the render equation represents the radiance of some point p and some incoming infinitely small solid angle ωi which can be thought of as an incoming direction vector $ω_i$. Remember that $cos\theta$ scales the energy based on the light’s incident angle to the surface which we find in the reflectance equation as $n\cdot ω_i$. The reflectance equation calculates the sum of reflected radiance $L_o(p,\ ω_o)$ of a point $p$ in direction $ω_o$ which is the outgoing direction to the viewer. Or to put it differently: $L_o$ measures the reflected sum of the lights’ irradiance onto point $p$ as viewed from $ω_o$.</p>
+<hr>
+<p>&nbsp;</p>
+<h2 id="BRDF"><a href="#BRDF" class="headerlink" title="BRDF"></a>BRDF</h2><p>The <code>BRDF</code>, or <code>bidirectional reflective distribution function</code> is a function that takes as input the incoming light direction $w_i$, the outgoing view direction $w_o$, the surface normal $n$ and a surface parameter $a$ that represents the microsuface’s roughness. The BRDF approximates how much each individual light ray ωi contributes to the final reflected light of an opaque surface given its material properties.</p>
+<p>A BRDF approximates the material’s reflective and refractive properties based on the previously discussed microfacet theory. For a BRDF to be physically plausible it has to respect the law of energy conservation i.e. the sum of reflected light should never exceed the amount of incoming light. Technically, Blinn-Phong is considered a BRDF taking the same ωi and ωo as inputs. However, Blinn-Phong is not considered physically based as it doesn’t adhere to the energy conservation principle. There are several physically based BRDFs out there to approximate the surface’s reaction to light. However, almost all real-time render pipelines use a BRDF known as the <code>Cook-Torrance BRDF</code>.</p>
+<p>The Cook-Torrance BRDF contains both a diffuse and specular part:</p>
+<p>$$ f_r = k_df_{lambert} + k_sf_{cook-torrance} $$</p>
+<p>Here $k_d$ is the earlier mentioned ratio of incoming light energy that gets refracted with $k_s$ being the ratio that gets reflected. The left side of the BRDF states the diffuse part of the equation denoted here as $f_{lambert}$. This is known as <code>lambertian diffuse</code> similar to what we used for diffuse shading which is a constant factor denoted as:</p>
+<p>$$ f_{lambert} = \frac{c}{\pi} $$</p>
+<p>With $c$ being the albedo or surface color (think of the diffuse surface texture). The divide by $\pi$ is there to normalize the diffuse light as the earlier denoted integral that contains the BRDF is scaled by $\pi$.</p>
+<blockquote>
+<p>Notice:<br>You might wonder how this Lambertian diffuse relates to the diffuse term we’ve been using before: the surface color multiplied by the dot product between the surface’s normal and the light direction. The dot product is still there, but moved out of the BRDF as we find $n\cdot ω_i$ at the end of the $L_o$ integral.</p>
+</blockquote>
+<p>There exist different equations for the diffuse part of the BRDF which tend to look more realistic, but are also more computationally expensive. As concluded by Epic Games however, the Lambertian diffuse is sufficient enough for most real-time rendering purposes.</p>
+<p>The specular part of the BRDF is a bit more advanced and is described as:</p>
+<p>$$ f_{cook-torrance} = \frac{DFG}{4(w_o\cdot n)(w_i\cdot n)} $$</p>
+<p>The Cook-Torrance specular BRDF consists of three functions and a normalization factor in the denominator. Each of the D, F and G symbols represent a type of function that approximates a specific part of the surface’s reflective properties. These are defined as the normal <strong>D</strong>istribution function, the <strong>F</strong>resnel equation and the <strong>G</strong>eometry function:</p>
+<ul>
+<li><p><strong>Normal distribution function</strong>: approximates the amount of the surface’s microfacets are aligned to the halfway vector influenced by the roughness of the surface; this is the primary function approximating the microfacets.</p>
+</li>
+<li><p><strong>Geometry function</strong>: describes the self-shadowing property of the microfacets. When a surface is relatively rough the surface’s microfacets can overshadow other microfacets thereby reducing the light the surface reflects.</p>
+</li>
+<li><p><strong>Fresnel equation</strong>: the Fresnel equation describes the ratio of surface reflection at different surface angles.</p>
+</li>
+</ul>
+<p>Each of these functions is an approximation of their physics equivalents and you’ll find more than one version of each one that aims to approximate the underlying physics; some more realistic, others more efficient. It is perfectly allowed to pick whatever approximated version of these functions you want to use. Brian Karis from Epic Games did a good deal of research on the multiple types of approximations here. We’re going to pick the same functions used by Epic Game’s Unreal Engine 4 which are the Trowbridge-Reitz GGX for D, the Fresnel-Schlick approximation for F and the Smith’s Schlick-GGX for G.</p>
+<p>&nbsp;</p>
+<h3 id="Normal-Distribution-Function"><a href="#Normal-Distribution-Function" class="headerlink" title="Normal Distribution Function"></a>Normal Distribution Function</h3><p>The normal distribution function D statistically approximates the relative surface area of microfacets exactly aligned to the halfway vector h. There are a multitude of NDFs defined that statistically approximate the general alignment of the microfacets given some roughness parameter and the one we’ll be using is known as the Trowbridge-Reitz GGX:</p>
+<p>$$ NDF_{GGXTR}(n,\ h,\ \alpha) = \frac{\alpha^2}{\pi((n\cdot h)^2(\alpha^2 - 1) + 1)^2} $$</p>
+<p>Here $h$ is the halfway vector to measure against the surface’s microfacets, with $\alpha$ being a measure of the surface’s roughness. If we take $h$ as the halfway vector between the surface normal and light direction over varying roughness parameters we get the following visual result:</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/853b7d94518429f935bedd650787edde.png" alt title="From LearnOpenGL.com"></p>
+<p>&nbsp;</p>
+<h3 id="Geometry-Function"><a href="#Geometry-Function" class="headerlink" title="Geometry Function"></a>Geometry Function</h3><p>The geometry function statistically approximates the relative surface area where its micro surface-details overshadow each other causing light rays to be occluded.</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/a45ac0bdf558d97dfeaf37208dc39d18.png" alt title="From LearnOpenGL.com"></p>
+<p>Similar to the NDF, the Geometry function takes a material’s roughness parameter as input with rougher surfaces having a higher probability of overshadowing microfacets. The geometry function we will use is a combination of the GGX and Schlick-Beckmann approximation known as Schlick-GGX:</p>
+<p>$$ G_{SchlickGGX}(n,\ v,\ k) = \frac{n\cdot v}{(n\cdot v)(1 - k) + k} $$</p>
+<p>Here $k$ is a remapping of $\alpha$ based on whether we’re using the geometry function for either direct lighting or IBL lighting:</p>
+<p>$$ k_{direct} = \frac{(\alpha + 1)^2}{8} $$</p>
+<p>$$ k_{IBL} = \frac{\alpha^2}{2}$$</p>
+<p>To effectively approximate the geometry we need to take account of both the view direction and the light direction vector. We can take both into account using <code>Smith&#39;s method</code>:</p>
+<p>$$G(n,\ v,\ l,\ k) = G_{SchlickGGX}(n,\ v,\ k)G_{SchlickGGX}(n,\ l,\ k)$$</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/25a799dfa08709cb908ce0d269af2c85.png" alt title="From LearnOpenGL.com"></p>
+<p>The geometry function is a multiplier between $[0.0, 1.0]$ with white or $1.0$ measuring no microfacet shadowing and black or $0.0$ complete microfacet shadowing.</p>
+<p>&nbsp;</p>
+<h3 id="Fresnel-Equation"><a href="#Fresnel-Equation" class="headerlink" title="Fresnel Equation"></a>Fresnel Equation</h3><p>The Fresnel equation describes the ratio of light that gets reflected over the light that gets refracted, which varies over the angle we’re looking at a surface. The moment light hits a surface, based on the surface to view angle the Fresnel equation tells us the percentage of light that gets reflected. From this ratio of reflection and the energy conservation principle we can directly obtain the refracted portion of light from its remaining energy.</p>
+<p>Every surface or material has a level of base <code>reflectivity</code> when looking straight at its surface, but when looking at the surface from an angle all reflections become more apparent compared to the surface’s base reflectivity. You can check this for yourself by looking at your presumably wooden/metallic desk which has a certain level of base reflectivity from a perpendicular view angle, but by looking at your desk from an almost 90 degree angle you’ll see the reflections become much more apparent. All surfaces theoretically fully reflect light if seen from perfect 90-degree angles. This phenomenon is known as <code>Fresnel</code> and is described by the Fresnel equation.</p>
+<p>The Fresnel equation is a rather complex equation, but luckily the Fresnel equation can be approximated using the Fresnel-Schlick approximation:</p>
+<p>$$ F_{Schlick}(h,\ v,\ F_0) = F_0 + (1 - F_0)(1 - (h\cdot v))^5 $$</p>
+<p>$F_0$ represents the base reflectivity of the surface, which we calculate using something called the indices of refraction or IOR and as you can see on a sphere surface, the more we look towards the surface’s grazing angles the stronger the Fresnel and thus the reflections:</p>
+<p><img src="https://ww1.yunjiexi.club/2019/08/26/72c18072ac770568970d7a677dfe4e71.png" alt title="From LearnOpenGL.com"></p>
+<p>There are a few subtleties involved with the Fresnel equation. One is that the Fresnel-Schlick approximation is only really defined for dielectric or non-metal surfaces. For conductor surfaces, calculating the base reflectivity using their indices of refraction doesn’t properly hold and we need to use a different Fresnel equation for conductors altogether. As this is inconvenient we further approximate by pre-computing the surface’s response at normal incidence, at a 0 degree angle as if looking directly onto a surface, and interpolate this value based on the view angle as per the Fresnel-Schlick approximation such that we can use the same equation for both metals and non-metals.</p>
+<pre class=" language-cpp"><code class="language-cpp">vec3 F0 <span class="token operator">=</span> <span class="token function">vec3</span><span class="token punctuation">(</span><span class="token number">0.04</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+F0 <span class="token operator">=</span> <span class="token function">mix</span><span class="token punctuation">(</span>F0<span class="token punctuation">,</span> surfaceColor<span class="token punctuation">.</span>rgb<span class="token punctuation">,</span> metalness<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<hr>
+<p>&nbsp;</p>
+<h2 id="Cook-Torrance-Reflectance-Equation"><a href="#Cook-Torrance-Reflectance-Equation" class="headerlink" title="Cook-Torrance Reflectance Equation"></a>Cook-Torrance Reflectance Equation</h2><p>With every component of the Cook-Torrance BRDF described we can include the physically based BRDF into the now final reflectance equation:</p>
+<p>$$L_o(p,\ w_o) = \int_{\Omega}^{ }{(k_d\frac{c}{\pi} + k_s\frac{DFG}{4(w_o\cdot n)(w_i\cdot n)})L_i(p,\ w_i)n\cdot w_idw_i}$$</p>
+<p>This equation is however not fully mathematically correct. You may remember that the Fresnel term $F$ represents the ratio of light that gets reflected on a surface. This is effectively our ratio $k_s$, meaning the specular part of the reflectance equation implicitly contains the reflectance ratio $k_s$. Given this, our final final reflectance equation becomes:</p>
+<p>$$L_o(p,\ w_o) = \int_{\Omega}^{ }{(k_d\frac{c}{\pi} + \frac{DFG}{4(w_o\cdot n)(w_i\cdot n)})L_i(p,\ w_i)n\cdot w_idw_i}$$</p>
+<hr>
+<p>&nbsp;</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://learnopengl.com" target="_blank" rel="noopener">LearnOpenGL</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/CG3.html">
+                    <div class="card-image">
+                        
+                        <img src="https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg" class="responsive-img" alt="Computer Graphics Review#2 - Lighting 2 of 2">
+                        
+                        <span class="card-title">Computer Graphics Review#2 - Lighting 2 of 2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Computer graphics is a sub-field of computer science which focuses on visual contents. Here we mainly refer to the 3D aspect, and discard 2D aspect like image processing, etc.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
+                                    OpenGL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Computer-Graphics/" target="_blank">
+                        <span class="chip bg-color">Computer Graphics</span>
+                    </a>
+                    
+                    <a href="/tags/OpenGL/" target="_blank">
+                        <span class="chip bg-color">OpenGL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/CG2-Lighting.html">
+                    <div class="card-image">
+                        
+                        <img src="https://ww1.yunjiexi.club/2019/07/27/nrWej.jpg" class="responsive-img" alt="Computer Graphics Review#2 - Lighting 1 of 2">
+                        
+                        <span class="card-title">Computer Graphics Review#2 - Lighting 1 of 2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Computer graphics is a sub-field of computer science which focuses on visual contents. Here we mainly refer to the 3D aspect, and discard 2D aspect like image processing, etc.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/OpenGL/" class="post-category" target="_blank">
+                                    OpenGL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Computer-Graphics/" target="_blank">
+                        <span class="chip bg-color">Computer Graphics</span>
+                    </a>
+                    
+                    <a href="/tags/OpenGL/" target="_blank">
+                        <span class="chip bg-color">OpenGL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy;<a href="https://github.com/PokhoOfSCUT" target="_blank">Rhys Chen</a>.
+
+           
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">14k</span>
+            
+
+            
+			
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/PokhoOfSCUT" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:xkxkxhxh1@outlook.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=787802624" class="tooltipped" data-tooltip="QQ联系我: 787802624" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+</body>
+</html>
