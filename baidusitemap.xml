@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://PokhoOfSCUT.github.io/CG4-RayTracing.html</loc>
+    <lastmod>2019-11-04</lastmod>
+  </url>  <url>
+    <loc>http://PokhoOfSCUT.github.io/CG2-Lighting.html</loc>
+    <lastmod>2019-11-03</lastmod>
+  </url>  <url>
+    <loc>http://PokhoOfSCUT.github.io/CG1-RenderingPipeline.html</loc>
+    <lastmod>2019-11-03</lastmod>
+  </url>  <url>
+    <loc>http://PokhoOfSCUT.github.io/CG3.html</loc>
+    <lastmod>2019-11-03</lastmod>
+  </url>  <url>
     <loc>http://PokhoOfSCUT.github.io/UnityLab1.html</loc>
     <lastmod>2019-10-30</lastmod>
   </url>  <url>
@@ -29,15 +41,6 @@
     <lastmod>2019-10-30</lastmod>
   </url>  <url>
     <loc>http://PokhoOfSCUT.github.io/DataStructureJourney1.html</loc>
-    <lastmod>2019-10-30</lastmod>
-  </url>  <url>
-    <loc>http://PokhoOfSCUT.github.io/CG3.html</loc>
-    <lastmod>2019-10-30</lastmod>
-  </url>  <url>
-    <loc>http://PokhoOfSCUT.github.io/CG1-RenderingPipeline.html</loc>
-    <lastmod>2019-10-30</lastmod>
-  </url>  <url>
-    <loc>http://PokhoOfSCUT.github.io/CG2-Lighting.html</loc>
     <lastmod>2019-10-30</lastmod>
   </url>
 </urlset>

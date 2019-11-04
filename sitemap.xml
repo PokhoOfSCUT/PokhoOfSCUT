@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://PokhoOfSCUT.github.io/CG4-RayTracing.html</loc>
+    
+    <lastmod>2019-11-04T08:32:27.137Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://PokhoOfSCUT.github.io/CG2-Lighting.html</loc>
+    
+    <lastmod>2019-11-03T13:38:56.023Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://PokhoOfSCUT.github.io/CG1-RenderingPipeline.html</loc>
+    
+    <lastmod>2019-11-03T13:38:54.548Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://PokhoOfSCUT.github.io/CG3.html</loc>
+    
+    <lastmod>2019-11-03T13:38:53.753Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://PokhoOfSCUT.github.io/UnityLab1.html</loc>
     
     <lastmod>2019-10-30T09:55:27.901Z</lastmod>
@@ -68,27 +96,6 @@
     <loc>http://PokhoOfSCUT.github.io/DataStructureJourney1.html</loc>
     
     <lastmod>2019-10-30T03:57:18.181Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://PokhoOfSCUT.github.io/CG3.html</loc>
-    
-    <lastmod>2019-10-30T03:47:29.231Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://PokhoOfSCUT.github.io/CG1-RenderingPipeline.html</loc>
-    
-    <lastmod>2019-10-30T03:38:21.526Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://PokhoOfSCUT.github.io/CG2-Lighting.html</loc>
-    
-    <lastmod>2019-10-30T03:35:35.688Z</lastmod>
     
   </url>
   
