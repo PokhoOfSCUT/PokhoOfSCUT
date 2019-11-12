@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://i.postimg.cc/BZyrCXcM/gamma.png">
 <meta property="og:image" content="https://i.postimg.cc/vBD7WQVb/reflect.png">
 <meta property="og:image" content="https://i.postimg.cc/pr3t2XDT/result.png">
-<meta property="og:updated_time" content="2019-11-04T08:32:27.137Z">
+<meta property="og:updated_time" content="2019-11-12T11:38:39.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Computer Graphics Review#3 - Ray Tracing In One Weekend 1 of 2">
 <meta name="twitter:description" content="Ray tracing was put forth in last century and has been used in film industry for decades. Even though it is a good way to achieve Global Illumination, it is not used in video games yet because games a">
@@ -303,7 +303,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-04 16:32:27" itemprop="dateModified" datetime="2019-11-04T16:32:27+08:00">2019-11-04</time>
+                <time title="Modified: 2019-11-12 19:38:39" itemprop="dateModified" datetime="2019-11-12T19:38:39+08:00">2019-11-12</time>
               </span>
             
           
@@ -340,7 +340,7 @@
 <p>In the first episode of my review, I briefly talked about a rendering pipeline, which is called raster rendering: it treats objects as geometries formed by a bunch of triangles and map these triangles onto screen pixels along with their color information. It apply some lighting models to approximately shade the scene, which cannot reach the best photorealistic effect. Ray tracing apply an approach conforming to physics, leading to a much more beautiful outcome.</p>
 <hr>
 <p>&nbsp;</p>
-<h2 id="How-to-do"><a href="#How-to-do" class="headerlink" title="How to do"></a>How to do</h2><p>I get into the ray tracing field with the help of <strong><em>Ray Tracing In One Weekend</em></strong>. It is a really good book, helping you learn how to do ray tracing rendering step by step from the very begining in a practical way. The author gives out all the code in detail, so I will not do that again here. What I mainly want to do is to write down some stuff in the book that I think is worth discussing.</p>
+<h2 id="How-To-Do"><a href="#How-To-Do" class="headerlink" title="How To Do"></a>How To Do</h2><p>I get into the ray tracing field with the help of <strong><em>Ray Tracing In One Weekend</em></strong>. It is a really good book, helping you learn how to do ray tracing rendering step by step from the very begining in a practical way. The author gives out all the code in detail, so I will not do that again here. What I mainly want to do is to write down some stuff in the book that I think is worth discussing.</p>
 <h3 id="Ray-Presentation"><a href="#Ray-Presentation" class="headerlink" title="Ray Presentation"></a>Ray Presentation</h3><p>We use parametric form to present a ray: $p(t) = A + t*B$. A stands for the origin of the ray, and B stands for the direction of the ray (unit vector in most of cases).</p>
 <p><img src="https://i.postimg.cc/FzB5ZTKj/ray.png" alt></p>
 <p>Assume that we are going to render a picture in size of $200\times 100$. We already know that the origin (position of the virtual camera) is at $(0, 0, 0)$, to figure out the direction, we can simply find a point on the canvas and use the position as the direction vector remaining to be normalized. In this case, the direction will be:</p>
@@ -416,7 +416,7 @@ vec3 <span class="token function">vertical</span><span class="token punctuation"
 <p><img src="https://i.postimg.cc/pr3t2XDT/result.png" alt></p>
 <hr>
 <p>&nbsp;</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>It’s so amazing, isn’t it? With just a little code, we can consummate an offline ray tracing renderer with high quality. I just finished part of the book, there are still some insteresting contents remaining to be discovered. Keep up with the author, build up my own code, and try to solve and write down some problems. I think I’ve learned a lot through this process. I will keep on doing.</p>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>It’s so amazing, isn’t it? With just a little code, we can consummate an offline ray tracing renderer with high quality. I just finished part of the book, there are still some insteresting contents remaining to be discovered. Keep up with the author, build up my own code, and try to solve and write down some problems. I think I’ve learned a lot through this process. I will keep on doing.</p>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Ray Tracing In One Weekend - Peter Shirley<br>[2] <a href="https://www.cambridgeincolour.com/tutorials/gamma-correction.htm" target="_blank" rel="noopener">Gamma Correction</a></p>
 
@@ -455,6 +455,10 @@ vec3 <span class="token function">vertical</span><span class="token punctuation"
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/CG5.html" rel="prev" title="Computer Graphics Review#3 - Ray Tracing In One Weekend 2 of 2">
+                  Computer Graphics Review#3 - Ray Tracing In One Weekend 2 of 2 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -508,7 +512,7 @@ vec3 <span class="token function">vertical</span><span class="token punctuation"
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -601,7 +605,7 @@ vec3 <span class="token function">vertical</span><span class="token punctuation"
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-do"><span class="nav-number">2.</span> <span class="nav-text">How to do</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ray-Presentation"><span class="nav-number">2.1.</span> <span class="nav-text">Ray Presentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intersection"><span class="nav-number">2.2.</span> <span class="nav-text">Intersection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Antialiasing"><span class="nav-number">2.3.</span> <span class="nav-text">Antialiasing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diffuse-Material"><span class="nav-number">2.4.</span> <span class="nav-text">Diffuse Material</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gamma-Correction"><span class="nav-number">2.5.</span> <span class="nav-text">Gamma Correction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metal-Material"><span class="nav-number">2.6.</span> <span class="nav-text">Metal Material</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">3.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-To-Do"><span class="nav-number">2.</span> <span class="nav-text">How To Do</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ray-Presentation"><span class="nav-number">2.1.</span> <span class="nav-text">Ray Presentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intersection"><span class="nav-number">2.2.</span> <span class="nav-text">Intersection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Antialiasing"><span class="nav-number">2.3.</span> <span class="nav-text">Antialiasing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diffuse-Material"><span class="nav-number">2.4.</span> <span class="nav-text">Diffuse Material</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gamma-Correction"><span class="nav-number">2.5.</span> <span class="nav-text">Gamma Correction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metal-Material"><span class="nav-number">2.6.</span> <span class="nav-text">Metal Material</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">3.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#End"><span class="nav-number">4.</span> <span class="nav-text">End</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>

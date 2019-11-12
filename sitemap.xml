@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://PokhoOfSCUT.github.io/CG5.html</loc>
+    
+    <lastmod>2019-11-12T12:37:24.387Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://PokhoOfSCUT.github.io/CG4-RayTracing.html</loc>
     
-    <lastmod>2019-11-04T08:32:27.137Z</lastmod>
+    <lastmod>2019-11-12T11:38:39.131Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://PokhoOfSCUT.github.io/CG3.html</loc>
+    
+    <lastmod>2019-11-12T09:02:47.517Z</lastmod>
     
   </url>
   
@@ -19,13 +33,6 @@
     <loc>http://PokhoOfSCUT.github.io/CG1-RenderingPipeline.html</loc>
     
     <lastmod>2019-11-03T13:38:54.548Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://PokhoOfSCUT.github.io/CG3.html</loc>
-    
-    <lastmod>2019-11-03T13:38:53.753Z</lastmod>
     
   </url>
   
